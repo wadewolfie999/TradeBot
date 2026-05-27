@@ -82,34 +82,54 @@ bool L2OrderBook::applyBbo(double bidPrice, double bidQty, double askPrice, doub
         return false;
     }
 
-    if (m_lastBboBidIdx >= 0) {
-        const auto idx = static_cast<std::size_t>(m_lastBboBidIdx);
+    const int64_t oldBidIdx = m_lastBboBidIdx;
+    const int64_t oldAskIdx = m_lastBboAskIdx;
+    const double bidQuantity = std::max(0.0, bidQty);
+    const double askQuantity = std::max(0.0, askQty);
+    const int64_t newBidIdx = static_cast<int64_t>(toIndex(bidPrice));
+    const int64_t newAskIdx = static_cast<int64_t>(toIndex(askPrice));
+
+    if (oldBidIdx >= 0) {
+        const auto idx = static_cast<std::size_t>(oldBidIdx);
         if (idx < m_bidLevels.size()) {
             m_bidLevels[idx] = 0.0;
-            if (m_bestBidIdx == m_lastBboBidIdx) {
-                refreshBestBidFrom(idx);
-            }
         }
     }
-    if (m_lastBboAskIdx >= 0) {
-        const auto idx = static_cast<std::size_t>(m_lastBboAskIdx);
+    if (oldAskIdx >= 0) {
+        const auto idx = static_cast<std::size_t>(oldAskIdx);
         if (idx < m_askLevels.size()) {
             m_askLevels[idx] = 0.0;
-            if (m_bestAskIdx == m_lastBboAskIdx) {
-                refreshBestAskFrom(idx);
-            }
         }
     }
 
-    const bool okBid = applyBidLevel(bidPrice, std::max(0.0, bidQty));
-    const bool okAsk = applyAskLevel(askPrice, std::max(0.0, askQty));
-    if (okBid) {
-        m_lastBboBidIdx = static_cast<int64_t>(toIndex(bidPrice));
+    if (bidQuantity > 0.0) {
+        m_bidLevels[static_cast<std::size_t>(newBidIdx)] = bidQuantity;
     }
-    if (okAsk) {
-        m_lastBboAskIdx = static_cast<int64_t>(toIndex(askPrice));
+    if (askQuantity > 0.0) {
+        m_askLevels[static_cast<std::size_t>(newAskIdx)] = askQuantity;
     }
-    return okBid && okAsk;
+
+    // If the previous best on a side was the prior BBO, replacing it with a new
+    // positive BBO value keeps that side's best at the new index without a scan.
+    if (bidQuantity > 0.0) {
+        if (m_bestBidIdx < 0 || m_bestBidIdx == oldBidIdx || newBidIdx > m_bestBidIdx) {
+            m_bestBidIdx = newBidIdx;
+        }
+    } else if (m_bestBidIdx == oldBidIdx) {
+        refreshBestBidFrom(static_cast<std::size_t>(oldBidIdx));
+    }
+
+    if (askQuantity > 0.0) {
+        if (m_bestAskIdx < 0 || m_bestAskIdx == oldAskIdx || newAskIdx < m_bestAskIdx) {
+            m_bestAskIdx = newAskIdx;
+        }
+    } else if (m_bestAskIdx == oldAskIdx) {
+        refreshBestAskFrom(static_cast<std::size_t>(oldAskIdx));
+    }
+
+    m_lastBboBidIdx = (bidQuantity > 0.0) ? newBidIdx : -1;
+    m_lastBboAskIdx = (askQuantity > 0.0) ? newAskIdx : -1;
+    return true;
 }
 
 L2OrderBook::BestQuote L2OrderBook::bbo() const noexcept
