@@ -1,30 +1,38 @@
+# macOS
+.DS_Store
+
+# Build directories
 build/
-CMakeFiles/
-CMakeCache.txt
 cmake-build-*/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+CTestTestfile.cmake
+cmake_install.cmake
+compile_commands.json
+
+# Compiled binaries/libraries
 *.o
+*.obj
 *.a
 *.so
 *.dylib
 *.exe
-*.out
+
+# Logs
 *.log
 
-data/results/
-data/archive/
+# Testing
+Testing/
 
-__pycache__/
-*.pyc
-.venv/
-venv/
+# Benchmark/replay artifacts
+*.bin
+*.csv
 
-.env
-.env.*
-!.env.example
-*.pem
-*.key
-*.crt
-
-.DS_Store
+# IDE/editor
 .vscode/
 .idea/
+
+# Temporary
+tmp/
