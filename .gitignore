@@ -1,0 +1,38 @@
+# macOS
+.DS_Store
+
+# Build directories
+build/
+cmake-build-*/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+CTestTestfile.cmake
+cmake_install.cmake
+compile_commands.json
+
+# Compiled binaries/libraries
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.exe
+
+# Logs
+*.log
+
+# Testing
+Testing/
+
+# Benchmark/replay artifacts
+*.bin
+*.csv
+
+# IDE/editor
+.vscode/
+.idea/
+
+# Temporary
+tmp/
