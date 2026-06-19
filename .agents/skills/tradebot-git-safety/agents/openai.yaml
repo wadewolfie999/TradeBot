@@ -1,0 +1,4 @@
+interface:
+  display_name: "TradeBot Git Safety"
+  short_description: "Safe Git-state governance for TradeBot workflows"
+  default_prompt: "Use $tradebot-git-safety to inspect TradeBot Git state and recommend the next safe action before edits, reviews, commits, or handoffs."
