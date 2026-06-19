@@ -185,14 +185,14 @@ Do not delete abandoned or superseded plans if they contain decision-relevant hi
 # Plan: Workstream I Integration Alignment
 
 - Plan ID: `PLAN-20260618-workstream-i-integration-alignment`
-- Status: Complete
+- Status: Complete — Approved
 - Owner: Operator
 - Implementer: Codex
 - Review authority: Operator
 - Related roadmap phase: Phase 21 Infrastructure Alignment
 - Related issue or decision: `docs/decisions/0003-workstream-i-integration-architecture.md`
 - Created: 2026-06-18
-- Updated: 2026-06-18
+- Updated: 2026-06-19
 
 ## Objective
 
@@ -258,7 +258,7 @@ Phase 18 and Phase 19 continuity around local replay, L2 order-book behavior, tr
 2. Draft Phase 21 integration architecture from verified repository boundaries only.
 3. Draft broker-neutral adapter contract without external API assumptions.
 4. Draft subsystem risk matrix and replay compatibility checklist.
-5. Draft ADR 0003 as `Proposed`.
+5. Draft ADR 0003 for operator disposition.
 6. Update documentation indexes and this active plan.
 7. Run documentation validation checks.
 
@@ -280,7 +280,7 @@ CMake and CTest are not required because this plan changes documentation only an
 
 - Documentation can drift if Phase 22 implementation starts before Phase 21 artifacts are reviewed.
 - Broker-neutral contracts may need future refinement when a specific broker or exchange is approved.
-- The current checked-out branch is `main`, while existing project-state docs still reference Phase 19 context.
+- At plan execution time, the checked-out branch was `main`, while project-state docs still referenced Phase 19 context.
 
 ## Rollback
 
@@ -290,6 +290,7 @@ Revert the documentation-only changes in Git or delete the newly added Workstrea
 
 - 2026-06-18: Operator approved Phase 21 plan execution and prohibited Phase 22 implementation.
 - 2026-06-18: Phase 21 documentation artifacts and ADR were drafted.
+- 2026-06-19: Operator accepted ADR 0003, approved Phase 21 Workstream I artifacts, and kept Phase 22 Blocked / NO-GO.
 
 ## Deviations
 
@@ -317,4 +318,4 @@ Results:
 
 ## Final Outcome
 
-Phase 21 plan-layer artifacts are complete. Phase 22 implementation remains blocked until the operator explicitly approves implementation scope after reviewing these artifacts.
+Phase 21 plan-layer artifacts are complete and approved. ADR 0003 is accepted. Phase 22 implementation remains Blocked / NO-GO and is ready for scoping only.

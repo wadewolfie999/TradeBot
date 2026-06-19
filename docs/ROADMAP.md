@@ -18,10 +18,10 @@ The roadmap is reconstructed from verified repository evidence, not from unverif
 
 ## Current Phase Marker
 
-- Current phase: Phase 19 revalidation.
-- Evidence: branch `phase/phase19-revalidation`; commits for Phase 19 baseline restoration, `apply_bbo` microbenchmark, and hot-path optimization.
-- Goal inferred from evidence: validate and benchmark `L2OrderBook::applyBbo` hot-path behavior without weakening Phase 18 replay/trigger-order behavior.
-- Status: in progress pending operator review and final validation evidence.
+- Current phase: Phase 21 Workstream I governance closeout.
+- Evidence: `main` contains merged Phase 19 revalidation history, infrastructure validation pipeline, Workstream I artifacts, and ADR 0003.
+- Goal inferred from evidence: close broker-neutral Workstream I planning governance before any Phase 22 scoping or implementation.
+- Status: Phase 21 is Complete — Approved. ADR 0003 is Accepted. Phase 22 is Blocked / NO-GO.
 
 ## Phase Model
 
@@ -70,14 +70,35 @@ The roadmap is reconstructed from verified repository evidence, not from unverif
 ### Phase 19: L2 BBO Performance Revalidation
 
 - Purpose: validate `applyBbo` hot-path performance and preserve functional correctness.
-- Evidence: branch and commits; `src/benchmarks/apply_bbo_microbench.cpp`; generated Phase 19 logs under ignored build path.
+- Evidence: merged Phase 19 history on `main`; `src/benchmarks/apply_bbo_microbench.cpp`; generated Phase 19 logs under ignored build path.
 - Scope: L2 BBO performance evidence and regression checks.
 - Expected artifacts: benchmark outputs, CTest results, and source changes when approved by a task.
 - Validation: `cmake --build build`, full CTest, targeted Phase 18 test, `build/apply_bbo_microbench <updates>`.
 - Exit condition: operator-reviewed evidence shows functional tests pass and benchmark results are recorded with environment/input size.
 - Dependencies: Phase 18 behavior and benchmark harness.
 - Rollback: revert Phase 19 source changes or restore baseline commit if benchmark or tests regress, with operator approval.
-- Status: current active phase.
+- Status: implementation history is merged on `main`; future performance claims still require fresh benchmark evidence.
+
+### Phase 21: Workstream I Infrastructure Alignment
+
+- Purpose: define broker-neutral integration architecture, subsystem boundaries, adapter lifecycle contracts, risk controls, and replay compatibility gates before implementation.
+- Evidence: `docs/WORKSTREAM_I_INTEGRATION_ARCHITECTURE.md`, `docs/WORKSTREAM_I_ADAPTER_CONTRACT.md`, `docs/WORKSTREAM_I_RISK_MATRIX.md`, `docs/WORKSTREAM_I_REPLAY_COMPATIBILITY_CHECKLIST.md`, and ADR 0003.
+- Scope: documentation-only planning and operator review.
+- Expected artifacts: Phase 21 planning docs, ADR 0003 disposition, and an explicit Phase 22 NO-GO until separate scoping is approved.
+- Validation: documentation audit, cross-document consistency check, and operator approval for ADR/plan status.
+- Exit condition: operator accepts ADR 0003 and approves Phase 21 artifacts.
+- Dependencies: Phase 18 replay/L2 behavior, Phase 19 BBO benchmark harness, existing risk and live-readiness gates.
+- Rollback: revise documentation-only Phase 21 artifacts with operator approval.
+- Status: Complete — Approved.
+
+### Phase 22: Workstream I Software Alignment
+
+- Purpose: implement only the approved Phase 21 broker-neutral integration contracts after separate approval.
+- Entry conditions: Phase 21 artifacts approved, ADR 0003 accepted, implementation scope frozen, tests and rollback path accepted, and explicit operator GO for implementation.
+- Scope: source implementation only after explicit operator approval.
+- Validation: CMake configure/build, targeted Phase 18 replay tests, full CTest, and additional adapter/risk/replay tests required by the approved plan.
+- Stop/go gate: no source edits, broker-specific assumptions, credential work, live trading, real orders, or risk-limit changes before explicit operator approval.
+- Status: Blocked / NO-GO; ready for scoping only.
 
 ### Future Research And Optimization Boundary
 

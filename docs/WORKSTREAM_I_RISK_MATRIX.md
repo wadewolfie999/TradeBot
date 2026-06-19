@@ -5,7 +5,7 @@
 - Purpose: classify Workstream I integration risks by subsystem and define required controls for Phase 21 and future Phase 22 work.
 - Authority level: planning evidence below `RISK_POLICY.md` and accepted ADRs; complements `ARCHITECTURE.md`.
 - Audience: operator, implementers, reviewers, testers, and future risk-review agents.
-- Status: planning-only. This matrix does not authorize source edits, risk-limit changes, live trading, credentials work, or external connectivity.
+- Status: Phase 21 planning matrix - Approved. This matrix does not authorize source edits, risk-limit changes, live trading, credentials work, or external connectivity.
 
 ## Risk Scale
 
@@ -59,8 +59,9 @@
 ### Governance Risk
 
 - Phase 21 is planning-only.
-- Phase 22 requires separate operator approval.
-- Proposed skills are not active unless explicitly approved.
+- Phase 21 artifacts are approved by operator decision.
+- Phase 22 requires separate operator approval and remains Blocked / NO-GO.
+- New skills are not active unless explicitly approved and installed.
 - ADR status must be respected before treating architecture decisions as canonical.
 
 ## Phase 21 Risk Gate
@@ -92,4 +93,3 @@ NO-GO if:
 - Source changes would weaken deterministic defaults.
 - Test evidence cannot isolate live-capable paths.
 - Required review skills or human review are unavailable for critical changes.
-

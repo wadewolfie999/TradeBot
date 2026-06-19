@@ -46,10 +46,10 @@ Financial safety and operator authority cannot be silently overridden by any doc
 - `GLOSSARY.md`: shared terms for modes, actors, phases, replay, risk, and benchmarks.
 - `REVIEW_CHECKLIST.md`: practical review checklist for source, docs, risk, tests, data, and security.
 - `RELEASE_POLICY.md`: commit, push, release, and live-transition gates.
-- `WORKSTREAM_I_INTEGRATION_ARCHITECTURE.md`: Phase 21 broker-neutral integration architecture and subsystem boundaries.
-- `WORKSTREAM_I_ADAPTER_CONTRACT.md`: Phase 21 adapter lifecycle, event, and ownership contract.
-- `WORKSTREAM_I_RISK_MATRIX.md`: Workstream I subsystem risk classifications, controls, and gates.
-- `WORKSTREAM_I_REPLAY_COMPATIBILITY_CHECKLIST.md`: deterministic replay and broker-event simulation compatibility gates.
+- `WORKSTREAM_I_INTEGRATION_ARCHITECTURE.md`: approved Phase 21 broker-neutral integration architecture and subsystem boundaries.
+- `WORKSTREAM_I_ADAPTER_CONTRACT.md`: approved Phase 21 adapter lifecycle, event, and ownership contract.
+- `WORKSTREAM_I_RISK_MATRIX.md`: approved Workstream I subsystem risk classifications, controls, and gates.
+- `WORKSTREAM_I_REPLAY_COMPATIBILITY_CHECKLIST.md`: approved deterministic replay and broker-event simulation compatibility gates.
 - `decisions/`: permanent architecture decision records.
 
 Root-level documents:

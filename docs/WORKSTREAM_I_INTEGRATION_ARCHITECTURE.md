@@ -5,7 +5,7 @@
 - Purpose: define the Phase 21 infrastructure-alignment architecture for the technical integration layer between the TradeBot core engine and future broker or exchange interfaces.
 - Authority level: planning and architecture guidance below accepted ADRs, `RISK_POLICY.md`, and `ARCHITECTURE.md`; above Phase 22 implementation work once approved by the operator.
 - Audience: operator, maintainers, Codex, implementers, reviewers, testers, and future integration agents.
-- Status: Phase 21 planning artifact. This document does not authorize Phase 22 implementation, live trading, broker-specific integration, credential changes, or risk-limit changes.
+- Status: Phase 21 planning artifact - Approved. This document does not authorize Phase 22 implementation, live trading, broker-specific integration, credential changes, or risk-limit changes.
 
 Workstream I is a planning layer. It defines boundaries, constraints, contracts, and validation gates. It must not be treated as implemented behavior until Phase 22 is separately approved and completed.
 
@@ -66,8 +66,8 @@ Exit criteria:
 - Adapter contract document is complete.
 - Risk matrix is complete.
 - Replay compatibility checklist is complete.
-- Integration architecture ADR is proposed or accepted by operator decision.
-- Phase 22 implementation scope is frozen and explicitly approved before code edits begin.
+- Integration architecture ADR is accepted by operator decision.
+- Phase 22 remains blocked until separate operator-approved scoping, verification strategy, and rollback path exist.
 
 ### Phase 22: Software Alignment
 
@@ -223,7 +223,7 @@ GO only if:
 - All Phase 21 artifacts are present and internally consistent.
 - No broker-specific API assumptions are required.
 - Risk and replay constraints are explicit.
-- Phase 22 scope can be implemented without design decisions.
+- Phase 22 scoping can begin without reopening Phase 21 infrastructure decisions.
 
 NO-GO if:
 
@@ -247,6 +247,8 @@ NO-GO if:
 - External broker details are required but not approved.
 - Determinism, risk isolation, credential handling, or replay compatibility are uncertain.
 
+Current status: Blocked / NO-GO for Phase 22 implementation.
+
 ## Backlog
 
 Non-blocking hardening:
@@ -262,4 +264,3 @@ Performance backlog:
 - Add ignored baseline benchmark artifacts for local comparisons.
 - Evaluate BBO batching only if replay order remains unchanged.
 - Avoid execution or network hot-path optimization until adapter contracts are frozen.
-
