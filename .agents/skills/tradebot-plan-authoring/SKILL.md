@@ -12,6 +12,10 @@ Draft, review, or update implementation plans using the TradeBot planning system
 
 Use before nontrivial source changes, architecture changes, financial-sensitive work, data schema changes, dependency changes, performance work, or multi-session work.
 
+## Invocation Order
+
+Run `tradebot-authority-state-audit` before phase-sensitive planning. Run `tradebot-phase-gate-audit` before any Phase 22 scoping, and do not draft Phase 22 implementation steps unless explicit operator GO exists.
+
 ## Must Not Be Used
 
 Do not use to bypass operator approval. Do not create plans for trivial direct patches where `PLANS.md` says a direct patch is acceptable.
@@ -52,6 +56,12 @@ git log --oneline --decorate -n 5
 5. Define acceptance criteria, verification, rollback, risks, and approval gates.
 6. Identify documentation and ADR updates.
 7. Mark state as Draft or Proposed until approved.
+
+## Related Skills
+
+- Use `tradebot-integration-architecture-review` for Workstream I or adapter architecture planning.
+- Use `tradebot-risk-review` for financial-sensitive, live-capable, order-execution, market-data, or credential planning.
+- Use `tradebot-performance-review` and `tradebot-benchmark-review` for performance or benchmark-driven plans.
 
 ## Allowed Mutations
 

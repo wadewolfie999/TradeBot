@@ -53,6 +53,12 @@ Read:
 7. State next exact action and prohibited next actions.
 8. State required approvals.
 
+## Related Skills
+
+- Use as the final step after multi-skill workflows, interrupted work, incomplete verification, or safety-sensitive review.
+- Include findings from `tradebot-authority-state-audit`, `tradebot-phase-gate-audit`, `tradebot-risk-review`, `tradebot-pr-readiness-review`, and any relevant implementation-review skills.
+- Do not replace PR readiness, risk review, replay validation, L2 review, build/test, performance review, or benchmark review.
+
 ## Allowed Mutations
 
 Create or update handoff Markdown only when requested. Otherwise report handoff in response.

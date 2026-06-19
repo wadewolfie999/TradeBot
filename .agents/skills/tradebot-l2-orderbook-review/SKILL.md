@@ -49,6 +49,13 @@ git status --short
 6. Run `apply_bbo_microbench` when performance is relevant.
 7. Report correctness before performance.
 
+## Related Skills
+
+- Use `tradebot-performance-review` before interpreting performance risk.
+- Use `tradebot-benchmark-review` before accepting benchmark methodology or claims.
+- Use `tradebot-market-replay-validation` when replay or trigger-order input behavior is affected.
+- Use `tradebot-execution-pipeline-validation` when BBO behavior affects order lifecycle decisions.
+
 ## Allowed Mutations
 
 Only when assigned implementation scope includes L2 files or docs. Build and benchmark outputs may be generated under ignored paths.

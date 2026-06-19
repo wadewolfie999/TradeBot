@@ -50,6 +50,13 @@ git diff --name-status
 6. Check tests cover affected safety behavior.
 7. Identify required operator approvals.
 
+## Related Skills
+
+- Use `tradebot-network-live-boundary-review` for live, network, auth, credential, PAPER, LIVE, broker, external I/O, or logging risk.
+- Use `tradebot-execution-pipeline-validation` for order lifecycle, fill, cancel, reconciliation, halt, close-only, or risk-bypass risk.
+- Use `tradebot-integration-architecture-review` for Workstream I architecture, broker-neutrality, adapter boundary, or subsystem-boundary risk.
+- Use `tradebot-phase-gate-audit` when risk review depends on Phase 22 GO/NO-GO state.
+
 ## Allowed Mutations
 
 Risk review is inspection/reporting only unless separately assigned documentation updates.
