@@ -124,7 +124,7 @@ Codex and other repository-side agents must not:
 - Codex skills: `.agents/skills/`.
 - Python components: none tracked at the time this contract was created.
 - Julia components: none tracked at the time this contract was created.
-- Scripts/tooling: no tracked shell scripts or external tool wrappers found; CMake is the active tooling entrypoint.
+- Scripts/tooling: tracked validation wrappers exist under `scripts/`, with `.githooks/pre-push` and `.github/workflows/validation.yml`; CMake remains the underlying tooling entrypoint.
 
 ## Verified Commands
 
@@ -136,16 +136,34 @@ Configure:
 cmake -S . -B build
 ```
 
+Validation wrapper configure:
+
+```sh
+./scripts/configure.sh
+```
+
 Build:
 
 ```sh
 cmake --build build
 ```
 
+Validation wrapper build:
+
+```sh
+./scripts/build.sh
+```
+
 Full CTest suite:
 
 ```sh
 ctest --test-dir build --output-on-failure
+```
+
+Validation wrapper test:
+
+```sh
+./scripts/test.sh
 ```
 
 Targeted phase test:

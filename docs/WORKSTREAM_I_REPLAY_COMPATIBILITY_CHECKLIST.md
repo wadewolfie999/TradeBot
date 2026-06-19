@@ -5,7 +5,7 @@
 - Purpose: define replay and deterministic-validation requirements for Workstream I Phase 21 and future Phase 22 implementation.
 - Authority level: planning checklist below `RISK_POLICY.md`, `DATA_POLICY.md`, accepted ADRs, and `ARCHITECTURE.md`.
 - Audience: operator, implementers, reviewers, testers, and future replay-validation agents.
-- Status: planning-only. This checklist does not authorize source edits, schema changes, generated-data promotion, or live behavior.
+- Status: Phase 21 planning checklist - Approved. This checklist does not authorize source edits, schema changes, generated-data promotion, or live behavior.
 
 ## Compatibility Goals
 
@@ -19,7 +19,7 @@
 
 Before implementation starts:
 
-- [ ] Phase 21 artifacts are approved.
+- [x] Phase 21 artifacts are approved.
 - [ ] Replay-affecting files and interfaces are identified.
 - [ ] Existing replay timestamp units are recorded.
 - [ ] Existing CSV and binary replay behavior is understood.
@@ -119,7 +119,7 @@ build/phase18_burnin 10000
 
 GO to Phase 22 implementation only if:
 
-- [ ] Phase 21 artifacts are approved.
+- [x] Phase 21 artifacts are approved.
 - [ ] Replay compatibility risks are documented.
 - [ ] Deterministic fixture strategy is defined.
 - [ ] Existing Phase 18 replay tests are expected to remain valid.
@@ -134,3 +134,4 @@ NO-GO if:
 - [ ] Broker-event simulation can mutate portfolio without confirmed fill evidence.
 - [ ] Risk state cannot be reconstructed or validated after replay.
 
+Current status: Blocked / NO-GO for Phase 22 implementation until scoping, tests, and rollback are explicitly approved.

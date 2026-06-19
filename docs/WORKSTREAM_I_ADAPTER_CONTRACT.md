@@ -5,7 +5,7 @@
 - Purpose: define broker-neutral adapter contract expectations for Phase 21 infrastructure alignment.
 - Authority level: planning contract below accepted ADRs, `RISK_POLICY.md`, and `ARCHITECTURE.md`; binding for Phase 22 only after operator approval.
 - Audience: operator, implementers, reviewers, testers, and future adapter authors.
-- Status: planning-only. This document does not authorize implementation, live trading, external API use, or credential changes.
+- Status: Phase 21 planning contract - Approved. This document does not authorize implementation, live trading, external API use, or credential changes.
 
 This contract intentionally avoids broker-specific API shapes. Broker-specific schemas, order flags, authentication flows, and endpoint semantics require a separate approved plan.
 
@@ -224,7 +224,7 @@ Any Phase 22 simulation implementation must:
 
 Implementation may begin only after:
 
-- Operator approves Phase 21 completion.
+- Operator approves Phase 22 implementation scope after Phase 21 completion.
 - The adapter contract is either accepted directly or incorporated into an accepted ADR.
 - Tests and rollback path are defined.
 - No broker-specific design choices remain open.
@@ -237,3 +237,4 @@ Implementation must halt if:
 - Risk behavior needs design changes.
 - Replay compatibility cannot be proven.
 
+Current status: Phase 21 contract approved; Phase 22 implementation remains Blocked / NO-GO.

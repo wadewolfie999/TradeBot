@@ -5,7 +5,7 @@
 - Purpose: authoritative current-state snapshot for TradeBot.
 - Authority level: current-state evidence below active approved plans and above the roadmap.
 - Audience: operator, maintainers, Codex, contributors, reviewers, and handoff recipients.
-- Last documentation/state audit: 2026-06-08 in `/Users/vaheedgorgeen/TradeBot`.
+- Last documentation/state audit: 2026-06-19 in `/Users/vaheedgorgeen/TradeBot`.
 - Last CMake/CTest verification evidence: 2026-06-06.
 
 This document represents current state only. Historical execution belongs in Git commits, pull requests, issues, ADRs, and handoffs.
@@ -13,20 +13,23 @@ This document represents current state only. Historical execution belongs in Git
 ## Repository State
 
 - Repository root: `/Users/vaheedgorgeen/TradeBot`.
-- Current branch: `phase/phase19-revalidation`.
-- Current commit: `ffbd352 phase19: optimize applyBbo hot path`.
-- Recent Phase 19 commits:
-  - `ffbd352 phase19: optimize applyBbo hot path`
-  - `58fd436 phase19: add applyBbo microbenchmark`
-  - `abcb3f8 phase19: restore implementation baseline for revalidation`
-- Worktree status at documentation audit: dirty with tracked documentation edits, untracked governance/documentation files, and untracked `.agents/skills/`.
+- Current branch: `main`.
+- Current local HEAD: `1bb888d Merge pull request #5 from wadewolfie999/docs/tradebot-git-safety`.
+- Fetched `origin/main`: `1bb888d Merge pull request #5 from wadewolfie999/docs/tradebot-git-safety`.
+- Recent mainline commits:
+  - `1bb888d Merge pull request #5 from wadewolfie999/docs/tradebot-git-safety`
+  - `2d91bfc Merge pull request #4 from wadewolfie999/docs/phase21-review-alignment`
+  - `0980083 Merge pull request #3 from wadewolfie999/infra/git-enforcement-pipeline`
+  - `56a29ee` merged Phase 19 revalidation history
+  - `b7685ca Merge pull request #1 from wadewolfie999/docs/github-era-cleanup`
+- Worktree status at documentation audit: dirty with documentation-only governance closeout edits for ADR 0003, Phase 21 approval, Phase 22 NO-GO status, and authority-doc reconciliation.
 - Ignored artifacts observed: `build/`, `data/`, and `src/.DS_Store`.
 
 ## Active Phase
 
-- Current active phase: Phase 19 revalidation.
-- Evidence: branch name `phase/phase19-revalidation`; recent commits referencing Phase 19 and `applyBbo`; benchmark target `apply_bbo_microbench`; generated logs under ignored `build/phase19_revalidation/`.
-- Phase status: implementation commits exist locally; validation is in progress and must remain evidence-driven.
+- Current active phase: Phase 21 Workstream I governance closeout.
+- Evidence: `main` contains the merged Phase 19 revalidation history, infrastructure validation pipeline, Workstream I Phase 21 artifacts, ADR 0003, and `tradebot-git-safety`.
+- Phase status: Phase 21 is Complete — Approved by operator decision. ADR 0003 is Accepted. Phase 22 is Blocked / NO-GO and has not been scoped or implemented.
 
 ## Completed Work Verified In Current Tree
 
@@ -36,16 +39,18 @@ This document represents current state only. Historical execution belongs in Git
 - Existing accepted ADRs:
   - ADR 0001: deprecate offline MOP/MOR/SS workflow.
   - ADR 0002: GitHub as long-term system of record after local cleanup is committed and pushed.
+  - ADR 0003: Workstream I broker-neutral integration architecture.
 - Runtime modes verified in `SystemConfig`: `BACKTEST`, `PAPER`, `LIVE`; default is `BACKTEST`.
 - Credential loading verified through `AuthManager` and `SystemConfig` env names `AIIO_API_KEY` and `AIIO_API_SECRET`.
 
 ## In-Progress Work
 
-- Phase 19 revalidation of `L2OrderBook::applyBbo` performance and benchmark evidence.
-- Repository governance and Codex skill-system creation.
+- Documentation-only governance closeout for Phase 21 Workstream I approval state.
+- Repository governance and Codex skill-system maintenance.
 
 ## Blocked Or Constrained Work
 
+- Phase 22 source implementation is Blocked / NO-GO until the operator separately approves bounded scope, verification strategy, rollback path, and any broker-specific assumptions.
 - GitHub-dependent sync remains constrained by intermittent or costly global connectivity.
 - Ubuntu compute-node commands are not verified in this workspace.
 - Markdown link-checking is unavailable locally because no link-check tool was found.
@@ -61,10 +66,10 @@ This document represents current state only. Historical execution belongs in Git
 
 ## Documentation System Status
 
-- Root `AGENTS.md`, `PLANS.md`, and `CONTRIBUTING.md` are present locally and pending review/commit/sync.
-- Dedicated testing, data, security, actor, workflow, handoff, benchmarking, dependency, configuration, style, failure-recovery, live-readiness, glossary, review, and release documents are present locally and pending review/commit/sync.
-- `.agents/skills/` TradeBot skill files are present locally and validate with the Codex skill validator.
-- Documentation and governance changes remain local until committed and pushed.
+- Root `AGENTS.md`, `PLANS.md`, and `CONTRIBUTING.md` are present locally.
+- Dedicated testing, data, security, actor, workflow, handoff, benchmarking, dependency, configuration, style, failure-recovery, live-readiness, glossary, review, release, and Workstream I documents are present locally.
+- `.agents/skills/` TradeBot skill files are present locally, including `tradebot-git-safety`.
+- Current governance closeout edits remain local until committed and pushed.
 
 ## Verification Evidence
 
@@ -89,14 +94,14 @@ Results:
 ## Operating Constraints
 
 - Default operation remains offline-first and low-bandwidth-conscious.
-- GitHub is the long-term system of record after local work is committed and pushed, but local Git is the immediate working record until sync.
+- GitHub is the long-term system of record after local work is committed and pushed; local `main` is fast-forwarded to fetched `origin/main` as of this audit.
 - External dependency downloads, web lookups, exchange checks, and remote API work should be grouped into planned connectivity windows.
 - Live trading remains prohibited without explicit operator authorization and readiness evidence.
 
 ## Next Safe Action
 
-Finish the documentation audit, validate path and skill consistency, then review and commit/sync only with operator approval.
+Prepare Phase 22 scoping only. Do not implement Phase 22, add broker-specific assumptions, change credentials, enable live trading, or alter risk defaults without separate operator approval.
 
 ## Next Professional Halting Point
 
-Stop after documentation state is corrected, cross-document audit results are reported, and remaining verification limits are stated. Do not commit, push, alter source code, delete generated artifacts, or perform live-capable operations without explicit operator approval.
+Stop after Phase 21 governance state is corrected, cross-document audit results are reported, and Phase 22 remains explicitly Blocked / NO-GO. Do not commit, push, alter source code, delete generated artifacts, or perform live-capable operations without explicit operator approval.

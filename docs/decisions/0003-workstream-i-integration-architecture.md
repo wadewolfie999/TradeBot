@@ -2,7 +2,7 @@
 
 ## Status
 
-Proposed
+Accepted
 
 ## Context
 
@@ -69,6 +69,7 @@ Phase 21 validation:
 - Risk matrix exists.
 - Replay compatibility checklist exists.
 - Documentation indexes reference new artifacts.
+- Operator accepted ADR 0003 and approved the Phase 21 Workstream I artifacts on 2026-06-19.
 - `git diff --check` passes.
 
 Future Phase 22 validation:
@@ -91,4 +92,3 @@ This decision should be reversed or superseded if:
 ## Supersession
 
 This ADR does not supersede an existing ADR.
-

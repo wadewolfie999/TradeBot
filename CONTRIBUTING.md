@@ -38,7 +38,7 @@ Do not edit secrets, `.env` files, generated outputs, or build artifacts as part
 
 ## Branches And Worktrees
 
-- Use focused branches named by phase or topic, such as `phase/phase19-revalidation` or `docs/governance-system`.
+- Use focused branches named by phase or topic, such as `phase/workstream-i-alignment` or `docs/governance-system`.
 - Keep source/build separation: generated files belong under ignored paths such as `build/` or `data/results/`.
 - Use additional worktrees only when the operator or maintainer wants parallel branches. Record the worktree path in handoffs.
 

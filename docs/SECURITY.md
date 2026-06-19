@@ -75,8 +75,8 @@ See `DEPENDENCY_POLICY.md`.
 
 ## Shell-Script Safety
 
-- No tracked shell scripts were present when this policy was created.
-- Do not add shell scripts without review.
+- Tracked validation shell scripts exist under `scripts/`, with `.githooks/pre-push`.
+- Do not add or materially change shell scripts without review.
 - Avoid destructive commands.
 - Avoid printing environment variables that may contain secrets.
 - Prefer explicit paths and quoted variables when scripts are introduced.
