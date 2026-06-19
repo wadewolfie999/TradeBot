@@ -72,6 +72,34 @@ Local skill folders contain `SKILL.md` workflow instructions:
 - `../.agents/skills/tradebot-git-safety/`
 - `../.agents/skills/tradebot-handoff/`
 - `../.agents/skills/tradebot-risk-review/`
+- `../.agents/skills/tradebot-authority-state-audit/`
+- `../.agents/skills/tradebot-phase-gate-audit/`
+- `../.agents/skills/tradebot-agent-loop-control/`
+- `../.agents/skills/tradebot-adr-review/`
+- `../.agents/skills/tradebot-pr-readiness-review/`
+- `../.agents/skills/tradebot-integration-architecture-review/`
+- `../.agents/skills/tradebot-execution-pipeline-validation/`
+- `../.agents/skills/tradebot-network-live-boundary-review/`
+- `../.agents/skills/tradebot-performance-review/`
+- `../.agents/skills/tradebot-benchmark-review/`
+
+Standard skill workflows:
+
+- Governance/documentation workflow: `tradebot-git-safety`, `tradebot-repo-hygiene`, `tradebot-authority-state-audit`, `tradebot-phase-gate-audit`, `tradebot-adr-review` when ADRs are touched, `tradebot-documentation-sync`, `tradebot-pr-readiness-review`, `tradebot-handoff`.
+- Phase 22 scoping workflow: `tradebot-git-safety`, `tradebot-authority-state-audit`, `tradebot-phase-gate-audit`, `tradebot-integration-architecture-review`, `tradebot-risk-review`, `tradebot-plan-authoring`, `tradebot-pr-readiness-review`, `tradebot-handoff`.
+- Implementation workflow: `tradebot-git-safety`, `tradebot-repo-hygiene`, `tradebot-plan-authoring`, relevant architecture/risk skill, implementation, `tradebot-cpp-build-test`, `tradebot-market-replay-validation`, `tradebot-l2-orderbook-review` when L2/order-book behavior is touched, `tradebot-execution-pipeline-validation` when order lifecycle is touched, `tradebot-network-live-boundary-review` when live/network/auth/broker boundaries are touched, `tradebot-performance-review` and `tradebot-benchmark-review` when performance is claimed, `tradebot-pr-readiness-review`, `tradebot-handoff`.
+- Agent-loop recovery workflow: `tradebot-agent-loop-control`, `tradebot-git-safety`, `tradebot-authority-state-audit`, one bounded corrective task, then stop and report.
+
+Skill workflow rules:
+
+- `tradebot-documentation-sync` defers to `tradebot-authority-state-audit` when current state is uncertain.
+- `tradebot-plan-authoring` defers to `tradebot-phase-gate-audit` before Phase 22 planning.
+- `tradebot-risk-review` cross-references network/live boundary, execution pipeline, and integration architecture reviews for those risk classes.
+- `tradebot-repo-hygiene` and `tradebot-git-safety` remain first-line checks for worktree and generated-artifact safety.
+- `tradebot-handoff` is the final step after multi-skill workflows.
+- `tradebot-performance-review` interprets performance-change risk; `tradebot-benchmark-review` validates benchmark measurement quality.
+- `tradebot-pr-readiness-review` verifies merge readiness after required specialist reviews; it does not replace them.
+- Accepted ADRs and approved Phase 21 artifacts do not authorize Phase 22 implementation. Phase 22 remains Blocked / NO-GO until explicit operator GO.
 
 ## Documentation Rules
 

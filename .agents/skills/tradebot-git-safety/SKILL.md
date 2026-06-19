@@ -89,6 +89,12 @@ git switch -c <branch-name>
 6. After edits, run `git diff --check` when there are tracked changes.
 7. Report branch, repository state, files changed, commands run, risks, and next safe action.
 
+## Related Skills
+
+- Remain the first-line check with `tradebot-repo-hygiene` before multi-skill workflows, PR readiness review, and handoff.
+- Use `tradebot-authority-state-audit` after Git state inspection when current-state docs may be stale.
+- Use `tradebot-pr-readiness-review` only after scoped validation and review evidence exist.
+
 ## Allowed Mutations
 
 - Local branch creation with `git switch -c <branch-name>` when the task explicitly requests it or clearly authorizes it.

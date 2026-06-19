@@ -42,6 +42,13 @@ Read `docs/TESTING.md` and affected tests.
 5. Capture warnings and failures.
 6. For performance work, run benchmark commands only after correctness checks.
 
+## Related Skills
+
+- Use `tradebot-market-replay-validation` for replay-affecting changes.
+- Use `tradebot-l2-orderbook-review` for L2 order-book or `applyBbo` behavior.
+- Use `tradebot-execution-pipeline-validation` for order lifecycle behavior.
+- Use `tradebot-performance-review` and `tradebot-benchmark-review` when performance is claimed.
+
 ## Allowed Mutations
 
 Build/test commands may write generated build artifacts, temporary files, and generated results in ignored paths.

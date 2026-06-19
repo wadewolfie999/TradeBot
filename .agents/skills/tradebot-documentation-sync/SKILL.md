@@ -12,6 +12,10 @@ Keep TradeBot documentation synchronized with source behavior, architecture, ris
 
 Use after behavior changes, architecture changes, risk changes, test command changes, data/schema changes, new skills, or governance edits.
 
+## Invocation Order
+
+Run `tradebot-authority-state-audit` first when current phase, ADR status, branch/commit state, approval state, or roadmap state may be stale or uncertain.
+
 ## Must Not Be Used
 
 Do not use to invent facts, hide uncertainty, or replace ADRs with ordinary documentation.
@@ -42,12 +46,18 @@ find .agents/skills -name SKILL.md -print | sort
 
 ## Procedure
 
-1. Identify authoritative source for each fact.
+1. Identify authoritative source for each fact. If current-state evidence is uncertain, stop and run `tradebot-authority-state-audit` before editing.
 2. Update only documents whose authority boundary is affected.
 3. Update `docs/README.md` when documents are added or removed.
 4. Update `PROJECT_STATE.md` only for current state.
 5. Create or update ADRs for durable decisions.
 6. Run documentation audit commands.
+
+## Related Skills
+
+- Use `tradebot-adr-review` before ADR status or ADR index changes.
+- Use `tradebot-phase-gate-audit` before phase-transition or Phase 22 status changes.
+- Use `tradebot-pr-readiness-review` after documentation sync when preparing PR handoff.
 
 ## Allowed Mutations
 

@@ -42,6 +42,12 @@ Read:
 5. If burn-in is relevant, document generated outputs and input size.
 6. Confirm generated files are ignored or intentionally versioned.
 
+## Related Skills
+
+- Use `tradebot-execution-pipeline-validation` when replay drives order lifecycle or broker-event simulation.
+- Use `tradebot-network-live-boundary-review` if replay behavior risks depending on live adapter, network, credential, or wall-clock state.
+- Use `tradebot-benchmark-review` when replay data supports benchmark claims.
+
 ## Allowed Mutations
 
 Build/test/benchmark commands may generate files under `/tmp`, `build/`, or `data/results/`.

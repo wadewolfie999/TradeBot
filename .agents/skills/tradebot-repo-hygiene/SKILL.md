@@ -43,6 +43,12 @@ find . -maxdepth 4 -type f -size +1M -print
 5. Report unrelated pre-existing changes.
 6. Recommend cleanup only when safe and in scope.
 
+## Related Skills
+
+- Remain the first-line generated-artifact and diff-health check with `tradebot-git-safety`.
+- Use before `tradebot-pr-readiness-review` and `tradebot-handoff`.
+- Do not replace domain reviews such as `tradebot-risk-review`, `tradebot-market-replay-validation`, or `tradebot-benchmark-review`.
+
 ## Allowed Mutations
 
 None unless the task explicitly authorizes cleanup. Documentation-related `.gitignore` corrections may be made only when scoped.
