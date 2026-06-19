@@ -2,8 +2,8 @@
 
 ## Purpose And Authority
 
-- Purpose: define the active phase model, validation gates, and current phase marker.
-- Authority level: roadmap and phase guidance below current project state and above workflow details.
+- Purpose: define the deterministic Workstreams I-III roadmap, phase sequence, status, and authorization gates.
+- Authority level: primary roadmap authority for Workstreams I-III within the repository authority order; below current project state and above workflow details.
 - Audience: operator, maintainers, Codex, contributors, reviewers, and research agents.
 
 The roadmap is reconstructed from verified repository evidence, not from unverified legacy claims. Phase names below reflect observed source/test/commit structure. Completion status is recorded only when supported by current files, tests, commits, or accepted docs.
@@ -15,15 +15,37 @@ The roadmap is reconstructed from verified repository evidence, not from unverif
 - Require replay, dry-run, paper, or sandbox validation before any live progression.
 - Record durable architecture decisions in ADRs.
 - Keep Git and GitHub as the execution record; do not recreate deprecated MOP/MOR/SS artifacts.
+- Do not skip phases or infer authorization from sequence, completion, approval, or ADR acceptance.
 
-## Current Phase Marker
+## Roadmap Interpretation Rules
 
-- Current phase: Phase 21 Workstream I governance closeout.
-- Evidence: `main` contains merged Phase 19 revalidation history, infrastructure validation pipeline, Workstream I artifacts, and ADR 0003.
-- Goal inferred from evidence: close broker-neutral Workstream I planning governance before any Phase 22 scoping or implementation.
-- Status: Phase 21 is Complete — Approved. ADR 0003 is Accepted. Phase 22 is Blocked / NO-GO.
+- "Next" identifies sequence; it does not authorize scoping or implementation.
+- "Approved" records acceptance of the named artifact or phase outcome; it does not by itself authorize implementation.
+- ADR acceptance records an architecture decision; it does not authorize source implementation.
+- A blocked phase requires exact operator GO before its blocked activity may begin.
+- No phase may be skipped.
+- Phase 22 remains Blocked / NO-GO until explicit operator GO. Its only permitted next activity is scoping, not implementation.
+- Workstream II must not imply that a broker has been selected. Broker selection requires an explicit operator decision in Phase 23.
+- Workstream III must not imply that a documentation platform has been selected. Platform selection requires an explicit operator decision in Phase 25.
+- Nobitex-specific assumptions are permitted only in the Phase 22 scope stated below; they do not select the Workstream II broker.
+- Live trading remains disabled and unauthorized unless the operator grants exact approval under `RISK_POLICY.md` and `LIVE_TRADING_READINESS.md`.
 
-## Phase Model
+## Deterministic Workstream Authority
+
+This table is the canonical roadmap state for Workstreams I-III. `PROJECT_STATE.md` summarizes it and must not independently redefine these statuses.
+
+| Workstream | Phase | Status | Authorized scope and gate |
+| --- | --- | --- | --- |
+| I - Technical Integration | Phase 21: Infrastructure Alignment | Complete — Approved | Internal TradeBot integration architecture and boundary alignment. ADR 0003 is Accepted; Phase 21 planning artifacts are approved. |
+| I - Technical Integration | Phase 22: Software Alignment | Blocked / NO-GO | Nobitex-to-TradeBot software alignment only after explicit operator GO. No implementation is authorized. |
+| II - Brokerage & Operations | Phase 23: Broker Selection | Not Started | Identify and evaluate the Most Optimized Broker (M.O.B.). No broker is selected without an explicit operator decision. |
+| II - Brokerage & Operations | Phase 24: Connection Protocol | Blocked | Define the TradeBot-to-selected-M.O.B. account connection protocol only after Phase 23 selection and operator approval of connection scope. |
+| III - Documentation & Knowledge Management | Phase 25: Documentation Platform Evaluation & Selection | Not Started | Evaluate and select the documentation platform. No platform is selected. |
+| III - Documentation & Knowledge Management | Phase 26: Core Documentation Architecture & Drafting | Blocked | Build the core documentation structure and draft canonical documentation only after Phase 25 selection and operator approval of the documentation architecture. |
+
+## Historical And Current Phase Model
+
+The Foundation through Phase 19 entries below are historical context reconstructed from repository evidence. Workstreams I-III and Phases 21-26 are current roadmap authority and use the statuses in the deterministic table above.
 
 ### Foundation And Deterministic Core
 
@@ -93,12 +115,44 @@ The roadmap is reconstructed from verified repository evidence, not from unverif
 
 ### Phase 22: Workstream I Software Alignment
 
-- Purpose: implement only the approved Phase 21 broker-neutral integration contracts after separate approval.
+- Purpose: align Nobitex with TradeBot through the approved Phase 21 broker-neutral boundaries, but only after explicit operator GO.
 - Entry conditions: Phase 21 artifacts approved, ADR 0003 accepted, implementation scope frozen, tests and rollback path accepted, and explicit operator GO for implementation.
-- Scope: source implementation only after explicit operator approval.
+- Scope: Nobitex-to-TradeBot software alignment only after explicit operator approval; this scope does not select a Workstream II broker.
 - Validation: CMake configure/build, targeted Phase 18 replay tests, full CTest, and additional adapter/risk/replay tests required by the approved plan.
-- Stop/go gate: no source edits, broker-specific assumptions, credential work, live trading, real orders, or risk-limit changes before explicit operator approval.
+- Stop/go gate: no source edits, Nobitex-specific technical assumptions beyond this scope statement, credential work, live trading, real orders, or risk-limit changes before explicit operator approval.
 - Status: Blocked / NO-GO; ready for scoping only.
+
+### Phase 23: Workstream II Broker Selection
+
+- Purpose: identify and evaluate the Most Optimized Broker (M.O.B.).
+- Entry conditions: Phase 22 sequence is respected and the operator authorizes broker-selection evaluation.
+- Scope: broker evaluation and an explicit operator selection decision; no connection implementation.
+- Stop/go gate: evaluation evidence must not imply that a broker has already been selected.
+- Status: Not Started; no broker is selected.
+
+### Phase 24: Workstream II Connection Protocol
+
+- Purpose: define the TradeBot-to-selected-M.O.B. account connection protocol.
+- Entry conditions: Phase 23 records an explicit broker selection and the operator approves the connection scope.
+- Scope: connection protocol only within the separately approved scope.
+- Stop/go gate: no account connection, credential use, or live trading before exact operator approval and applicable risk gates.
+- Status: Blocked on Phase 23 selection and operator approval.
+
+### Phase 25: Workstream III Documentation Platform Evaluation And Selection
+
+- Purpose: evaluate and select the documentation platform.
+- Entry conditions: prior phases are not skipped and the operator authorizes platform evaluation.
+- Scope: platform evaluation and an explicit operator selection decision.
+- Stop/go gate: evaluation must not imply that a platform has already been selected.
+- Status: Not Started; no documentation platform is selected.
+
+### Phase 26: Workstream III Core Documentation Architecture And Drafting
+
+- Purpose: build the core documentation structure and draft canonical documentation.
+- Entry conditions: Phase 25 records an explicit platform selection and the operator approves the documentation architecture.
+- Scope: documentation architecture and drafting only within the separately approved scope.
+- Stop/go gate: no platform-specific architecture or drafting may begin from an assumed selection.
+- Status: Blocked on Phase 25 selection and operator approval.
 
 ### Future Research And Optimization Boundary
 
@@ -120,6 +174,10 @@ The roadmap is reconstructed from verified repository evidence, not from unverif
 
 ## Recovery Considerations
 
-- If roadmap state conflicts with `PROJECT_STATE.md`, use `PROJECT_STATE.md` for current evidence and update this roadmap after review.
+- If `PROJECT_STATE.md` conflicts with the Workstreams I-III table, stop and reconcile the summary against this roadmap and higher authority before acting.
 - If an ADR conflicts with roadmap direction, the accepted ADR governs until superseded.
 - If tests fail during a phase gate, halt implementation and follow `FAILURE_RECOVERY.md`.
+
+## Next Roadmap Action
+
+The next major step is Phase 22 scoping only. Phase 22 implementation, live trading, credential work, and risk changes remain unauthorized.

@@ -62,7 +62,7 @@ Do not reuse IDs. If a plan is superseded, create a new ID and cross-reference t
 
 - Draft: being written or refined.
 - Proposed: ready for operator or review-authority approval.
-- Approved: implementation may begin within stated scope.
+- Approved: the plan is accepted for its stated purpose; implementation may begin only when the related roadmap phase is authorized and all required operator, risk, and phase gates are satisfied.
 - In Progress: implementation has started.
 - Blocked: progress requires unavailable evidence, approval, access, or dependency.
 - Verifying: implementation is complete and checks are running.
@@ -87,6 +87,8 @@ Every plan must state:
 - Completion evidence.
 
 Plans must not invent repository facts. If evidence is missing, record the uncertainty and define the inspection needed to resolve it.
+
+Plan approval, phase approval, and ADR acceptance are distinct. None independently authorizes a blocked phase, source implementation, broker selection, documentation-platform selection, credentials, or live trading.
 
 ## Deviation Handling
 
@@ -182,7 +184,7 @@ Do not delete abandoned or superseded plans if they contain decision-relevant hi
 ## Final Outcome
 ```
 
-# Plan: Workstream I Integration Alignment
+# Historical Completed Plan: Workstream I Integration Alignment
 
 - Plan ID: `PLAN-20260618-workstream-i-integration-alignment`
 - Status: Complete — Approved

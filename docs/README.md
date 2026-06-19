@@ -27,8 +27,8 @@ Financial safety and operator authority cannot be silently overridden by any doc
 
 ## Active Documents
 
-- `PROJECT_STATE.md`: current verified repository state, active phase, constraints, and next safe action.
-- `ROADMAP.md`: phase model, gates, validation, and current phase marker.
+- `PROJECT_STATE.md`: current verified repository-state summary, constraints, and next safe action; it points to the roadmap for Workstreams I-III phase authority.
+- `ROADMAP.md`: deterministic Workstreams I-III roadmap authority, phase sequence, statuses, gates, and validation boundaries.
 - `ARCHITECTURE.md`: system purpose, component boundaries, data/control flow, and architectural debt.
 - `RISK_POLICY.md`: financial, order-execution, data, credential, reproducibility, and AI-agent risk controls.
 - `TESTING.md`: test layers, commands, fixtures, deterministic checks, and minimum evidence.
