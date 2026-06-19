@@ -181,3 +181,140 @@ Do not delete abandoned or superseded plans if they contain decision-relevant hi
 
 ## Final Outcome
 ```
+
+# Plan: Workstream I Integration Alignment
+
+- Plan ID: `PLAN-20260618-workstream-i-integration-alignment`
+- Status: Complete
+- Owner: Operator
+- Implementer: Codex
+- Review authority: Operator
+- Related roadmap phase: Phase 21 Infrastructure Alignment
+- Related issue or decision: `docs/decisions/0003-workstream-i-integration-architecture.md`
+- Created: 2026-06-18
+- Updated: 2026-06-18
+
+## Objective
+
+Construct the missing Phase 21 plan layer for Workstream I: broker-neutral integration architecture between the deterministic TradeBot core and future broker or exchange interfaces.
+
+## Context
+
+Phase 18 and Phase 19 continuity around local replay, L2 order-book behavior, trigger-order BBO inputs, and `applyBbo` validation is treated as baseline evidence. No Phase 22 implementation is authorized by this plan.
+
+## Scope
+
+- Create the Workstream I integration architecture document.
+- Create the Workstream I adapter contract document.
+- Create the Workstream I risk matrix.
+- Create the Workstream I replay compatibility checklist.
+- Create an ADR for broker-neutral integration architecture.
+- Update documentation indexes.
+
+## Out of Scope
+
+- C++ source edits.
+- Broker-specific APIs, endpoints, schemas, or credentials.
+- Live trading or real order routing.
+- Risk-limit, position-sizing, drawdown, halt, close-only, fee, or slippage changes.
+- Generated-data cleanup or benchmark-result publication.
+- Phase 22 implementation.
+
+## Preconditions
+
+- Operator approved Phase 21 plan execution.
+- Repository state was inspected before mutation.
+- Work is documentation-only.
+
+## Assumptions
+
+- Phase 18/19 L2 validation is accepted as continuity evidence by the operator.
+- Phase 21 artifacts are allowed to describe future Phase 22 constraints without implementing them.
+- `BACKTEST` remains the deterministic default.
+- `LIVE` remains prohibited without explicit future operator authorization.
+
+## Invariants
+
+- Strategies must not directly submit broker orders.
+- New exposure must pass through `ExecutionEngine` and `RiskEngine`.
+- Broker-facing behavior remains behind `BrokerGateway`.
+- Credentials remain behind `AuthManager` and `SystemConfig`.
+- Replay and backtest behavior must not depend on external network, broker, credential, or wall-clock state.
+
+## Files Expected to Change
+
+- `PLANS.md`
+- `docs/README.md`
+- `docs/WORKSTREAM_I_INTEGRATION_ARCHITECTURE.md`
+- `docs/WORKSTREAM_I_ADAPTER_CONTRACT.md`
+- `docs/WORKSTREAM_I_RISK_MATRIX.md`
+- `docs/WORKSTREAM_I_REPLAY_COMPATIBILITY_CHECKLIST.md`
+- `docs/decisions/README.md`
+- `docs/decisions/0003-workstream-i-integration-architecture.md`
+
+## Implementation Steps
+
+1. Inspect repository state, documentation indexes, planning schema, and ADR template.
+2. Draft Phase 21 integration architecture from verified repository boundaries only.
+3. Draft broker-neutral adapter contract without external API assumptions.
+4. Draft subsystem risk matrix and replay compatibility checklist.
+5. Draft ADR 0003 as `Proposed`.
+6. Update documentation indexes and this active plan.
+7. Run documentation validation checks.
+
+## Verification
+
+Documentation-only verification:
+
+```sh
+git diff --check
+find docs -maxdepth 3 -type f -print | sort
+find .agents/skills -name SKILL.md -print | sort
+grep -RInE 'TO''DO|TB''D|FIX''ME|PLACE''HOLDER|example ''only' AGENTS.md PLANS.md CONTRIBUTING.md docs .agents 2>/dev/null || true
+grep -RInE 'live trading|live-trading|real order|API key|credential|secret' AGENTS.md PLANS.md CONTRIBUTING.md docs .agents 2>/dev/null || true
+```
+
+CMake and CTest are not required because this plan changes documentation only and does not alter verified commands or source behavior.
+
+## Risks
+
+- Documentation can drift if Phase 22 implementation starts before Phase 21 artifacts are reviewed.
+- Broker-neutral contracts may need future refinement when a specific broker or exchange is approved.
+- The current checked-out branch is `main`, while existing project-state docs still reference Phase 19 context.
+
+## Rollback
+
+Revert the documentation-only changes in Git or delete the newly added Workstream I artifacts and remove their index entries, with operator approval.
+
+## Progress Log
+
+- 2026-06-18: Operator approved Phase 21 plan execution and prohibited Phase 22 implementation.
+- 2026-06-18: Phase 21 documentation artifacts and ADR were drafted.
+
+## Deviations
+
+None currently recorded.
+
+## Completion Evidence
+
+Completed on 2026-06-18 with documentation-only validation:
+
+```sh
+git diff --check
+find docs -maxdepth 3 -type f -print | sort
+find .agents/skills -name SKILL.md -print | sort
+grep -RInE 'TO''DO|TB''D|FIX''ME|PLACE''HOLDER|example ''only' AGENTS.md PLANS.md CONTRIBUTING.md docs .agents 2>/dev/null || true
+grep -RInE 'live trading|live-trading|real order|API key|credential|secret' AGENTS.md PLANS.md CONTRIBUTING.md docs .agents 2>/dev/null || true
+```
+
+Results:
+
+- `git diff --check` passed with no whitespace errors.
+- Documentation and skill inventories completed.
+- Placeholder audit returned no hits.
+- Risk-term audit returned expected safety-policy and Workstream I references; no secret values were printed.
+- CMake and CTest were skipped because this plan changed documentation only and did not alter source behavior or verified commands.
+
+## Final Outcome
+
+Phase 21 plan-layer artifacts are complete. Phase 22 implementation remains blocked until the operator explicitly approves implementation scope after reviewing these artifacts.
