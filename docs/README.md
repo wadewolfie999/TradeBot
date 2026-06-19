@@ -65,6 +65,7 @@ Local skill folders contain `SKILL.md` workflow instructions:
 - `../.agents/skills/tradebot-market-replay-validation/`
 - `../.agents/skills/tradebot-repo-hygiene/`
 - `../.agents/skills/tradebot-documentation-sync/`
+- `../.agents/skills/tradebot-git-safety/`
 - `../.agents/skills/tradebot-handoff/`
 - `../.agents/skills/tradebot-risk-review/`
 
