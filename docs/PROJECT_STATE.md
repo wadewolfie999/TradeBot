@@ -22,7 +22,7 @@ This document represents current state only. Historical execution belongs in Git
 `ROADMAP.md` is the deterministic authority for Workstreams I-III. Current summary:
 
 - Phase 21: Complete — Approved; ADR 0003 is Accepted.
-- Phase 22: Blocked / NO-GO; scoping is the only permitted next activity and implementation is unauthorized.
+- Phase 22: Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness; Blocked / NO-GO for implementation. Broker-neutral contract scoping and offline MT5/prop-account readiness research are the only permitted next activities.
 - Phase 23: Not Started; no broker is selected.
 - Phase 24: Blocked pending Phase 23 selection and operator-approved connection scope.
 - Phase 25: Not Started; no documentation platform is selected.
@@ -44,10 +44,12 @@ This document represents current state only. Historical execution belongs in Git
 ## In-Progress Work
 
 - Repository governance and Codex skill-system maintenance.
+- Phase 22 broker-neutral execution-contract scoping and offline MT5/prop-account readiness research; no connectivity or implementation is authorized.
 
 ## Blocked Or Constrained Work
 
-- Phase 22 source implementation is Blocked / NO-GO until the operator separately approves bounded scope, verification strategy, rollback path, and any broker-specific assumptions.
+- Phase 22 source implementation is Blocked / NO-GO until the operator separately approves bounded scope, verification strategy, rollback path, and any broker- or platform-specific assumptions.
+- MT5 connectivity, terminal integration, prop-account access, credentials, real order routing, and live trading remain unauthorized.
 - Phase 24 is blocked until Phase 23 selects a broker and the operator approves connection scope.
 - Phase 26 is blocked until Phase 25 selects a documentation platform and the operator approves documentation architecture.
 - GitHub-dependent sync remains constrained by intermittent or costly global connectivity.
@@ -99,7 +101,7 @@ Results:
 
 ## Next Safe Action
 
-Prepare Phase 22 scoping only. Do not implement Phase 22, assume a Workstream II broker selection, assume a Workstream III documentation-platform selection, change credentials, enable live trading, or alter risk defaults without separate operator approval.
+Continue Phase 22 broker-neutral contract scoping and offline MT5/prop-account readiness research only. Do not implement Phase 22, select a broker or prop firm, establish MT5 connectivity, access an account, change credentials, enable live trading, or alter risk defaults without separate operator approval.
 
 ## Next Professional Halting Point
 
