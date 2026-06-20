@@ -27,7 +27,7 @@ The roadmap is reconstructed from verified repository evidence, not from unverif
 - Phase 22 remains Blocked / NO-GO until explicit operator GO. Its only permitted next activity is scoping, not implementation.
 - Workstream II must not imply that a broker has been selected. Broker selection requires an explicit operator decision in Phase 23.
 - Workstream III must not imply that a documentation platform has been selected. Platform selection requires an explicit operator decision in Phase 25.
-- Nobitex-specific assumptions are permitted only in the Phase 22 scope stated below; they do not select the Workstream II broker.
+- MT5/prop-account readiness is a downstream compatibility target for Phase 22 broker-neutral contracts. It does not select a broker or prop firm and does not authorize MT5 connectivity, account access, credentials, or implementation.
 - Live trading remains disabled and unauthorized unless the operator grants exact approval under `RISK_POLICY.md` and `LIVE_TRADING_READINESS.md`.
 
 ## Deterministic Workstream Authority
@@ -37,7 +37,7 @@ This table is the canonical roadmap state for Workstreams I-III. `PROJECT_STATE.
 | Workstream | Phase | Status | Authorized scope and gate |
 | --- | --- | --- | --- |
 | I - Technical Integration | Phase 21: Infrastructure Alignment | Complete — Approved | Internal TradeBot integration architecture and boundary alignment. ADR 0003 is Accepted; Phase 21 planning artifacts are approved. |
-| I - Technical Integration | Phase 22: Software Alignment | Blocked / NO-GO | Nobitex-to-TradeBot software alignment only after explicit operator GO. No implementation is authorized. |
+| I - Technical Integration | Phase 22: Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness | Blocked / NO-GO | Scope broker-neutral execution contracts and deterministic readiness evidence for MT5/prop-account compatibility. No broker, prop firm, connection method, account access, or implementation is authorized. |
 | II - Brokerage & Operations | Phase 23: Broker Selection | Not Started | Identify and evaluate the Most Optimized Broker (M.O.B.). No broker is selected without an explicit operator decision. |
 | II - Brokerage & Operations | Phase 24: Connection Protocol | Blocked | Define the TradeBot-to-selected-M.O.B. account connection protocol only after Phase 23 selection and operator approval of connection scope. |
 | III - Documentation & Knowledge Management | Phase 25: Documentation Platform Evaluation & Selection | Not Started | Evaluate and select the documentation platform. No platform is selected. |
@@ -113,13 +113,14 @@ The Foundation through Phase 19 entries below are historical context reconstruct
 - Rollback: revise documentation-only Phase 21 artifacts with operator approval.
 - Status: Complete — Approved.
 
-### Phase 22: Workstream I Software Alignment
+### Phase 22: Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness
 
-- Purpose: align Nobitex with TradeBot through the approved Phase 21 broker-neutral boundaries, but only after explicit operator GO.
-- Entry conditions: Phase 21 artifacts approved, ADR 0003 accepted, implementation scope frozen, tests and rollback path accepted, and explicit operator GO for implementation.
-- Scope: Nobitex-to-TradeBot software alignment only after explicit operator approval; this scope does not select a Workstream II broker.
-- Validation: CMake configure/build, targeted Phase 18 replay tests, full CTest, and additional adapter/risk/replay tests required by the approved plan.
-- Stop/go gate: no source edits, Nobitex-specific technical assumptions beyond this scope statement, credential work, live trading, real orders, or risk-limit changes before explicit operator approval.
+- Purpose: align TradeBot execution boundaries around broker-neutral contracts, with MT5/prop-account readiness as the primary downstream compatibility target.
+- Entry conditions: Phase 21 artifacts approved, ADR 0003 accepted, and operator-approved documentation/scoping scope. Source implementation additionally requires a frozen implementation scope, accepted tests and rollback path, and separate explicit operator GO.
+- Scope: documentation and offline research for order lifecycle, account/equity snapshots, position reconciliation, symbol metadata, lot sizing, execution-result mapping, failure handling, deterministic simulation, and configurable prop-account risk-rule modeling. This scope does not select a Workstream II broker or prop firm.
+- Boundary: MT5-specific transport, terminal bridges, broker APIs, credentials, account access, network connectivity, and real order routing are outside Phase 22 scoping authorization.
+- Validation: documentation consistency and deterministic contract review during scoping; future implementation would require CMake configure/build, targeted Phase 18 replay tests, full CTest, and additional adapter/risk/replay tests defined by a separately approved implementation plan.
+- Stop/go gate: no source edits, broker-specific implementation, credential work, live trading, real orders, account mutation, risk-limit changes, or MT5 connectivity before separate explicit operator approval.
 - Status: Blocked / NO-GO; ready for scoping only.
 
 ### Phase 23: Workstream II Broker Selection
@@ -180,4 +181,4 @@ The Foundation through Phase 19 entries below are historical context reconstruct
 
 ## Next Roadmap Action
 
-The next major step is Phase 22 scoping only. Phase 22 implementation, live trading, credential work, and risk changes remain unauthorized.
+The next major step is Phase 22 broker-neutral contract scoping and offline MT5/prop-account readiness research only. Phase 22 implementation, MT5 connectivity, account access, live trading, credential work, and risk changes remain unauthorized.
