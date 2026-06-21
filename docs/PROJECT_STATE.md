@@ -5,7 +5,7 @@
 - Purpose: authoritative current-state summary for TradeBot.
 - Authority level: current-state evidence below active approved plans and above the roadmap; Workstreams I-III phase definitions and statuses are delegated to `ROADMAP.md`.
 - Audience: operator, maintainers, Codex, contributors, reviewers, and handoff recipients.
-- Last documentation/state audit: 2026-06-19 in `/Users/vaheedgorgeen/TradeBot`.
+- Last documentation/state audit: 2026-06-21 in `/Users/vaheedgorgeen/TradeBot`.
 - Last CMake/CTest verification evidence: 2026-06-06.
 
 This document represents current state only. Historical execution belongs in Git commits, pull requests, issues, ADRs, and handoffs.
@@ -22,7 +22,7 @@ This document represents current state only. Historical execution belongs in Git
 `ROADMAP.md` is the deterministic authority for Workstreams I-III. Current summary:
 
 - Phase 21: Complete — Approved; ADR 0003 is Accepted.
-- Phase 22: Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness; Blocked / NO-GO for implementation. Broker-neutral contract scoping and offline MT5/prop-account readiness research are the only permitted next activities.
+- Phase 22: Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness; broker-neutral contract scoping and offline documentation/research are GO, while software implementation remains Blocked / NO-GO.
 - Phase 23: Not Started; no broker is selected.
 - Phase 24: Blocked pending Phase 23 selection and operator-approved connection scope.
 - Phase 25: Not Started; no documentation platform is selected.
@@ -43,13 +43,13 @@ This document represents current state only. Historical execution belongs in Git
 
 ## In-Progress Work
 
+- Approved Phase 22 broker-neutral execution-contract scoping and offline MT5/prop-account research/artifact review; no connectivity or implementation is authorized.
 - Repository governance and Codex skill-system maintenance.
-- Phase 22 broker-neutral execution-contract scoping and offline MT5/prop-account readiness research; no connectivity or implementation is authorized.
 
 ## Blocked Or Constrained Work
 
-- Phase 22 source implementation is Blocked / NO-GO until the operator separately approves bounded scope, verification strategy, rollback path, and any broker- or platform-specific assumptions.
-- MT5 connectivity, terminal integration, prop-account access, credentials, real order routing, and live trading remain unauthorized.
+- Phase 22 source implementation is Blocked / NO-GO until the operator separately approves bounded scope, verification strategy, rollback path, and any required external, broker-specific, or platform-specific assumptions.
+- MT5 connectivity, terminal integration or login, credentials, account or prop-account access, broker or prop-firm selection, real or sandbox order routing, live trading, and Phase 23 activation remain unauthorized.
 - Phase 24 is blocked until Phase 23 selects a broker and the operator approves connection scope.
 - Phase 26 is blocked until Phase 25 selects a documentation platform and the operator approves documentation architecture.
 - GitHub-dependent sync remains constrained by intermittent or costly global connectivity.
@@ -68,7 +68,7 @@ This document represents current state only. Historical execution belongs in Git
 ## Documentation System Status
 
 - Root `AGENTS.md`, `PLANS.md`, and `CONTRIBUTING.md` are present locally.
-- Dedicated testing, data, security, actor, workflow, handoff, benchmarking, dependency, configuration, style, failure-recovery, live-readiness, glossary, review, release, and Workstream I documents are present locally.
+- Dedicated testing, data, security, actor, workflow, handoff, benchmarking, dependency, configuration, style, failure-recovery, live-readiness, glossary, review, release, Workstream I, and Phase 22 offline-research documents are present locally.
 - `.agents/skills/` TradeBot skill files are present locally, including `tradebot-git-safety`.
 - `ROADMAP.md` is the canonical Workstreams I-III roadmap authority; this document summarizes its current state.
 
@@ -101,8 +101,8 @@ Results:
 
 ## Next Safe Action
 
-Continue Phase 22 broker-neutral contract scoping and offline MT5/prop-account readiness research only. Do not implement Phase 22, select a broker or prop firm, establish MT5 connectivity, access an account, change credentials, enable live trading, or alter risk defaults without separate operator approval.
+Review `PHASE22_OFFLINE_MT5_PROP_RESEARCH.md` and continue only broker-neutral contract scoping and offline documentation/research. Do not implement Phase 22, connect or log in to MT5, access an account, use credentials, select a broker or prop firm, start Phase 23, route real or sandbox orders, enable live trading, or alter risk defaults without separate operator approval.
 
 ## Next Professional Halting Point
 
-Stop after roadmap authority is synchronized and cross-document audit results are reported. Phase 22 remains explicitly Blocked / NO-GO. Do not skip phases, alter source code, delete generated artifacts, or perform live-capable operations without explicit operator approval.
+Stop after the authority reconciliation, research artifact, and cross-document audit results are reported. Phase 22 software implementation remains explicitly Blocked / NO-GO. Do not skip phases, alter source code, delete generated artifacts, or perform connectivity, credential, account, broker-selection, real-order, sandbox, or live-capable operations without explicit operator approval.
