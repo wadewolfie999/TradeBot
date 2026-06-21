@@ -28,6 +28,7 @@ The roadmap is reconstructed from verified repository evidence, not from unverif
 - Workstream II must not imply that a broker has been selected. Broker selection requires an explicit operator decision in Phase 23.
 - Workstream III must not imply that a documentation platform has been selected. Platform selection requires an explicit operator decision in Phase 25.
 - Nobitex is omitted from active Phase 22 scope. Phase 22 research must remain broker-neutral and must not select a broker, prop firm, program, account, or MT5 bridge topology.
+- MT5/prop-account readiness is a downstream compatibility target for Phase 22 broker-neutral contracts. It does not select a broker or prop firm and does not authorize MT5 connectivity, account access, credentials, or implementation.
 - Live trading remains disabled and unauthorized unless the operator grants exact approval under `RISK_POLICY.md` and `LIVE_TRADING_READINESS.md`.
 
 ## Deterministic Workstream Authority
@@ -37,7 +38,7 @@ This table is the canonical roadmap state for Workstreams I-III. `PROJECT_STATE.
 | Workstream | Phase | Status | Authorized scope and gate |
 | --- | --- | --- | --- |
 | I - Technical Integration | Phase 21: Infrastructure Alignment | Complete — Approved | Internal TradeBot integration architecture and boundary alignment. ADR 0003 is Accepted; Phase 21 planning artifacts are approved. |
-| I - Technical Integration | Phase 22: Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness | Blocked / NO-GO for implementation | Documentation-only offline research is authorized. No source implementation, MT5 connectivity, credentials, account access, broker selection, real orders, sandbox/live use, or live trading is authorized. |
+| I - Technical Integration | Phase 22: Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness | Blocked / NO-GO for implementation | Broker-neutral contract scoping and deterministic offline MT5/prop-account research are authorized. No broker or prop firm selection, connection method, connectivity, credentials, account access, real or sandbox orders, implementation, or live trading is authorized. |
 | II - Brokerage & Operations | Phase 23: Broker Selection | Not Started | Identify and evaluate the Most Optimized Broker (M.O.B.). No broker is selected without an explicit operator decision. |
 | II - Brokerage & Operations | Phase 24: Connection Protocol | Blocked | Define the TradeBot-to-selected-M.O.B. account connection protocol only after Phase 23 selection and operator approval of connection scope. |
 | III - Documentation & Knowledge Management | Phase 25: Documentation Platform Evaluation & Selection | Not Started | Evaluate and select the documentation platform. No platform is selected. |
@@ -115,14 +116,15 @@ The Foundation through Phase 19 entries below are historical context reconstruct
 
 ### Phase 22: Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness
 
-- Purpose: research offline how MT5-facing integration classes and synthetic prop-account rule dimensions could map to the approved Phase 21 broker-neutral boundaries without activating software implementation or selecting a provider.
-- Entry conditions for authorized research: Phase 21 artifacts approved, ADR 0003 accepted, explicit operator authorization for documentation/research only, and preserved implementation NO-GO.
-- Authorized scope: broker-neutral documentation and offline research covering lifecycle, reconciliation, account and symbol metadata, deterministic quantity normalization, synthetic/configurable prop-rule dimensions, future fixtures, replay validation, risks, and non-activation safeguards.
+- Purpose: align TradeBot execution boundaries around broker-neutral contracts and research offline how MT5-facing integration classes and synthetic prop-account rules could map to those boundaries without selecting a provider or activating implementation.
+- Entry conditions for authorized scoping/research: Phase 21 artifacts approved, ADR 0003 accepted, explicit operator authorization for documentation/scoping only, and preserved implementation NO-GO.
+- Authorized scope: broker-neutral documentation and offline research covering order lifecycle, account/equity snapshots, position reconciliation, account and symbol metadata, deterministic quantity normalization, lot sizing, execution-result mapping, failure handling, synthetic/configurable prop-rule dimensions, deterministic fixtures, replay validation, risks, and non-activation safeguards.
+- Compatibility boundary: MT5-specific transport, terminal bridges, broker APIs, credentials, account access, network connectivity, real order routing, broker selection, and prop-firm selection remain outside the authorization.
 - Research artifact: `PHASE22_OFFLINE_MT5_PROP_RESEARCH.md`.
-- Documentation validation: Git diff hygiene, documentation audits, cross-document authority consistency, broker-neutrality review, and non-activation wording review.
-- Future implementation entry conditions: a separately approved bounded implementation plan, explicit operator GO, accepted contract decisions, required tests, rollback path, and resolution of all Phase 23+ decisions that the approved implementation actually depends on.
-- Stop/go gate: no C++ or CMake edits, test implementation, runtime/config/data changes, MT5 connection or login, credentials, account access, broker or prop-firm selection, real or sandbox orders, live trading, risk-limit changes, or Phase 23 activation under the research authorization.
-- Status: offline documentation/research GO; software implementation Blocked / NO-GO.
+- Documentation validation: Git diff hygiene, documentation audits, cross-document authority consistency, broker-neutrality review, deterministic contract review, and non-activation wording review.
+- Future implementation entry conditions: a separately approved bounded implementation plan, frozen scope, explicit operator GO, accepted contract decisions, required adapter/risk/replay tests, rollback path, and resolution of all Phase 23+ decisions that the implementation actually depends on.
+- Stop/go gate: no C++ or CMake edits, test implementation, runtime/config/data changes, broker-specific implementation, MT5 connection or login, credentials, account access, broker or prop-firm selection, real or sandbox orders, live trading, risk-limit changes, or Phase 23 activation under the scoping/research authorization.
+- Status: broker-neutral documentation/scoping and offline research GO; software implementation Blocked / NO-GO.
 
 ### Phase 23: Workstream II Broker Selection
 
@@ -182,4 +184,4 @@ The Foundation through Phase 19 entries below are historical context reconstruct
 
 ## Next Roadmap Action
 
-The next major step is operator review of the Phase 22 research artifact and continued evidence collection within the approved research-only plan. Phase 22 software implementation, MT5 connectivity, credentials, account access, broker selection, real orders, sandbox/live use, live trading, risk changes, and Phase 23 activation remain unauthorized.
+The next major step is operator review of the Phase 22 research artifact plus continued broker-neutral contract scoping and offline evidence collection. Phase 22 software implementation, MT5 connectivity, credentials, account access, broker or prop-firm selection, real or sandbox orders, live trading, risk changes, and Phase 23 activation remain unauthorized.

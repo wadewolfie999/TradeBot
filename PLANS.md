@@ -184,6 +184,132 @@ Do not delete abandoned or superseded plans if they contain decision-relevant hi
 ## Final Outcome
 ```
 
+# Completed Plan: Phase 22 Execution Adapter Re-Scope
+
+- Plan ID: `PLAN-20260621-phase22-execution-adapter-rescope`
+- Status: Complete — Approved for Documentation/Scoping Only
+- Owner: Operator
+- Implementer: Codex
+- Review authority: Operator
+- Related roadmap phase: Phase 22: Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness
+- Related issue or decision: ADR 0003 and the operator directive dated 2026-06-21
+- Created: 2026-06-21
+- Updated: 2026-06-21
+
+## Objective
+
+Replace the obsolete Phase 22 venue target with broker-neutral execution-adapter alignment and deterministic MT5/prop-account readiness contracts. Preserve Phase 22 implementation as Blocked / NO-GO and preserve live trading as unauthorized.
+
+## Context
+
+Phase 21 is Complete — Approved and ADR 0003 is Accepted. Those approvals establish broker-neutral architecture but do not authorize Phase 22 implementation. The operator approved this documentation/scoping re-scope and explicitly withheld authorization for source changes, MT5 connectivity, account access, credentials, broker-specific implementation, and live trading.
+
+## Scope
+
+- Synchronize the Phase 22 title, objective, boundaries, and gate in `docs/ROADMAP.md` and `docs/PROJECT_STATE.md`.
+- Define broker-neutral contracts for order lifecycle, account/equity snapshots, position reconciliation, symbol metadata, lot sizing, execution-result mapping, and failure handling.
+- Preserve deterministic replay and simulation requirements for all future contract validation.
+- Define configurable prop-account risk-rule modeling requirements without selecting a prop firm or inventing account-specific thresholds.
+- Permit offline MT5/prop-account compatibility research only.
+
+## Out of Scope
+
+- C++ source, tests, CMake, ADR 0003, broker code, credentials, risk limits, live configuration, or implementation files.
+- Broker selection, prop-firm selection, or Workstream II Phase 23 decisions.
+- MT5 terminal bridges, platform APIs, broker APIs, network connectivity, account access, or real order routing.
+- Live trading, account mutation, secret inspection, or risk-control bypass.
+
+## Preconditions
+
+- Work begins from a clean `main` branch on a dedicated documentation branch.
+- Phase 21 remains Complete — Approved.
+- ADR 0003 remains Accepted.
+- Phase 22 implementation and live trading remain Blocked / NO-GO.
+
+## Assumptions
+
+- MT5/prop-account readiness is a downstream compatibility target, not a broker or prop-firm selection.
+- Offline research may identify contract requirements but cannot authorize connectivity or implementation.
+- No firm-specific risk threshold is authoritative without a later explicit operator decision and evidence.
+
+## Invariants
+
+- Strategy and allocation logic remain independent of broker and platform schemas.
+- New exposure remains gated through `ExecutionEngine` and `RiskEngine` before `BrokerGateway` submission.
+- Future adapters attach below `BrokerGateway`; they do not bypass it.
+- Portfolio and risk state change only from confirmed fill or reconciliation evidence.
+- `BACKTEST` remains deterministic and independent of network, terminal, account, credential, wall-clock, and live endpoint state.
+- Prop-account constraints may tighten existing risk controls but must never weaken them.
+
+## Files Expected to Change
+
+- `PLANS.md`
+- `docs/ROADMAP.md`
+- `docs/PROJECT_STATE.md`
+- `docs/README.md` only if an index or authority cross-reference requires synchronization
+
+## Implementation Steps
+
+1. Verify Git state and current Phase 21, ADR 0003, Phase 22, and live-trading authority.
+2. Replace obsolete Phase 22 venue wording with the approved broker-neutral title and scope.
+3. Record MT5/prop-account readiness as a downstream compatibility target without selecting a broker, prop firm, connection method, or account.
+4. Record the required broker-neutral execution, reconciliation, symbol, sizing, result, failure, replay, and prop-risk contracts.
+5. Preserve explicit implementation, connectivity, credential, account-access, and live-trading NO-GO gates.
+6. Run documentation consistency, obsolete-reference, phase-state, ADR-status, and live-status validation.
+
+## Verification
+
+Documentation-only verification:
+
+```sh
+git status --short
+git diff --name-status
+git diff --stat
+git diff --check
+rg -n -i 'Nobi''tex' docs/ROADMAP.md docs/PROJECT_STATE.md PLANS.md docs/README.md
+rg -n "Phase 21|Phase 22|ADR[- ]?0003|ADR 0003|Accepted|Blocked / NO-GO|live trading|MT5|prop-account" docs/ROADMAP.md docs/PROJECT_STATE.md PLANS.md docs/README.md docs/decisions/README.md docs/decisions/0003-workstream-i-integration-architecture.md docs/RISK_POLICY.md docs/LIVE_TRADING_READINESS.md
+```
+
+CMake and CTest are not required because this plan changes documentation only and does not alter source behavior or verified build/test commands.
+
+## Risks
+
+- MT5 readiness language could be misread as connectivity or implementation authorization.
+- Prop-account readiness could be misread as selecting a prop firm or accepting unverified risk thresholds.
+- A platform-specific contract could leak into core strategy, allocation, replay, analytics, portfolio, execution, or risk code.
+- Phase 22 scoping could be mistaken for phase activation.
+
+## Rollback
+
+Revert only this documentation re-scope with operator approval. ADR 0003, Phase 21 artifacts, source, tests, CMake, credentials, broker code, risk limits, and live configuration remain unchanged.
+
+## Progress Log
+
+- 2026-06-21: Operator approved the Phase 22 target re-scope for documentation and scoping only.
+- 2026-06-21: Created `docs/phase22-execution-adapter-rescope` from clean `main` at `c1df5ee`.
+- 2026-06-21: Synchronized roadmap, project-state, and planning authority; `docs/README.md` required no index change.
+
+## Deviations
+
+None currently recorded.
+
+## Completion Evidence
+
+Completed on 2026-06-21 with documentation-only validation:
+
+- `git diff --check` passed with no whitespace errors.
+- The obsolete Phase 22 venue-reference scan returned no matches.
+- Phase 21 remains Complete — Approved and ADR 0003 remains Accepted.
+- Phase 22 implementation remains Blocked / NO-GO.
+- MT5 connectivity, account access, credentials, real order routing, and live trading remain unauthorized.
+- Placeholder audit returned no hits.
+- Documentation and skill inventories completed.
+- CMake and CTest were skipped because source, tests, CMake, runtime behavior, and verified commands were unchanged.
+
+## Final Outcome
+
+Phase 22 is re-scoped to broker-neutral execution-adapter alignment with MT5/prop-account readiness as the downstream compatibility target. Documentation/scoping and offline research are authorized; implementation, MT5 connectivity, account access, credentials, real order routing, and live trading remain Blocked / NO-GO.
+
 # Historical Completed Plan: Workstream I Integration Alignment
 
 - Plan ID: `PLAN-20260618-workstream-i-integration-alignment`
