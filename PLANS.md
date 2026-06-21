@@ -320,4 +320,164 @@ Results:
 
 ## Final Outcome
 
-Phase 21 plan-layer artifacts are complete and approved. ADR 0003 is accepted. Phase 22 implementation remains Blocked / NO-GO and is ready for scoping only.
+At Phase 21 closeout, the plan-layer artifacts were complete and approved, ADR 0003 was accepted, and Phase 22 implementation remained Blocked / NO-GO. The later research-only Phase 22 authorization is recorded in the plan below; it does not change the implementation gate.
+
+# Approved Research Plan: Phase 22 Offline MT5/Prop-Account Research
+
+- Plan ID: `PLAN-20260621-phase22-offline-mt5-prop-research`
+- Status: Approved — Research-Only
+- Owner: Operator
+- Implementer: Codex and future approved research actors
+- Review authority: Operator
+- Related roadmap phase: Phase 22 Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness
+- Related issue or decision: ADR 0003 and the approved Workstream I Phase 21 artifacts
+- Created: 2026-06-21
+- Updated: 2026-06-21
+
+## Objective
+
+Create a broker-neutral, offline evidence base for future MT5 and synthetic prop-account modeling without implementing an adapter, choosing a broker or prop firm, accessing an account, using credentials, connecting to MT5, or authorizing real orders or live trading.
+
+Success means:
+
+- The active authority documents use the Phase 22 title `Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness`.
+- Nobitex is omitted from active Phase 22 scope.
+- `docs/PHASE22_OFFLINE_MT5_PROP_RESEARCH.md` records the research surfaces, evidence structure, broker-neutral boundaries, deterministic fixture requirements, and blocked decisions.
+- Phase 22 implementation remains `Blocked / NO-GO`.
+- Phase 23 remains `Not Started`, with no broker or prop firm selected.
+
+## Context
+
+The operator authorized documentation-only offline research and supplied a completed deep-research memo as research input. Research input does not have roadmap, implementation, credential, connectivity, account-access, broker-selection, real-order, or live-trading authority. At task start, the repository contained obsolete Nobitex wording in `docs/ROADMAP.md`; this plan required that wording to be removed from active Phase 22 scope before research-only approval was recorded.
+
+## Scope
+
+- Reconcile `PLANS.md`, `docs/ROADMAP.md`, and `docs/PROJECT_STATE.md` around the current Phase 22 title and gates.
+- Create the offline MT5/prop-account research artifact.
+- Index the artifact in `docs/README.md`.
+- Record MT5 integration surfaces as research classes rather than a selected topology.
+- Define synthetic/configurable prop-account rule dimensions without provider thresholds.
+- Define future broker-neutral contracts, subsystem boundaries, determinism constraints, fixtures, replay validation, and rollback/non-activation safeguards.
+
+## Out of Scope
+
+- C++ source, headers, CMake, tests, scripts, runtime configuration, data, or generated-output changes.
+- MT5 terminal connectivity, terminal installation or automation, account login, account access, external API calls, or network sessions.
+- Credentials, endpoints, certificates, account identifiers, or private account data.
+- Broker, provider, prop firm, program, rulebook, bridge topology, account type, or instrument selection.
+- Real orders, sandbox orders, live account mutation, live trading, Phase 22 software implementation, or Phase 23 activation.
+- Financial-limit or risk-default changes.
+
+## Preconditions
+
+- The operator explicitly authorized this bounded documentation/research task.
+- Phase 21 is Complete - Approved and ADR 0003 is Accepted.
+- Phase 22 implementation remains Blocked / NO-GO.
+- Repository state and Git safety are inspected before edits.
+- Phase 23 broker selection has not started.
+
+## Assumptions
+
+- The findings enumerated in the operator task are the usable research input from the completed deep-research memo.
+- A separately preserved memo artifact was not present in the supplied attachment directory during this task; provider-specific or version-sensitive claims therefore require future evidence-register entries before reliance.
+- MT5 product surfaces and prop-program rules may differ by deployment, license, provider, jurisdiction, account, program, and rulebook version.
+- Provider examples, if later added, are evidence for rule dimensions only and are not recommendations or readiness evidence.
+
+## Invariants
+
+- `BACKTEST` remains deterministic and offline.
+- `PAPER` remains locally simulated unless separately approved work changes that boundary.
+- `LIVE` and real orders remain unauthorized.
+- New exposure must pass through `ExecutionEngine`, `RiskEngine`, and `BrokerGateway` boundaries.
+- Portfolio state may change only from validated, deduplicated fill evidence or approved reconciliation evidence.
+- MT5-native types, ticket semantics, status codes, fill policies, and schemas must not become TradeBot core authority contracts.
+- Prop-account rules remain synthetic, configurable, versioned, and provider-neutral during Phase 22 research.
+- Unknown, stale, malformed, or unreconciled external state fails closed for risk-increasing actions.
+
+## Files Expected to Change
+
+- `PLANS.md`
+- `docs/ROADMAP.md`
+- `docs/PROJECT_STATE.md`
+- `docs/PHASE22_OFFLINE_MT5_PROP_RESEARCH.md`
+- `docs/README.md`
+
+No source, CMake, test, script, config, credential, data, runtime, or generated file is expected to change.
+
+## Implementation Steps
+
+These are documentation steps only; they are not Phase 22 software implementation:
+
+1. Audit Git state and the current authority, risk, architecture, live-readiness, adapter, and replay contracts.
+2. Replace obsolete active Phase 22 Nobitex wording with the operator-approved broker-neutral MT5/prop-account research scope.
+3. Record the offline research GO separately from the Phase 22 implementation NO-GO.
+4. Create the research artifact with explicit evidence, lifecycle, reconciliation, account, symbol, lot-sizing, failure, synthetic-rule, subsystem-boundary, determinism, fixture, and blocked-decision sections.
+5. Add the artifact to the documentation index.
+6. Run documentation, authority, scope, and non-activation audits.
+
+## Verification
+
+Required Git and documentation checks:
+
+```sh
+git status --short
+git diff --name-status
+git diff --stat
+git diff --check
+find docs -maxdepth 3 -type f -print | sort
+grep -RInE 'TO''DO|TB''D|FIX''ME|PLACE''HOLDER|example ''only' AGENTS.md PLANS.md CONTRIBUTING.md docs .agents 2>/dev/null || true
+grep -RInE 'live trading|live-trading|real order|API key|credential|secret' AGENTS.md PLANS.md CONTRIBUTING.md docs .agents 2>/dev/null || true
+```
+
+The review must also prove:
+
+- Only the five expected Markdown files changed.
+- No active authority document assigns Nobitex to Phase 22.
+- No wording selects or authorizes a broker, prop firm, program, account, bridge topology, credentials, connectivity, real orders, sandbox use, or live trading.
+- MT5-specific schema remains research evidence and does not leak into TradeBot core authority contracts.
+- Prop-account rules remain synthetic/configurable unless clearly labeled as external evidence examples.
+
+CMake and CTest are not required because this plan changes documentation only and does not change source, build definitions, tests, runtime behavior, or verified commands.
+
+## Risks
+
+- MT5 interfaces can differ by integration class, deployment, product license, terminal build, server, and broker configuration.
+- Prop-account rules can change and can differ by provider, program, jurisdiction, rulebook version, and account state.
+- Treating request acceptance as execution could create false portfolio state.
+- Ticket reuse or mutation, delayed history, duplicate events, and out-of-order events could corrupt lifecycle state without stable internal identity and deduplication.
+- Quantity normalization could increase exposure unless units, rounding policy, invalid-volume rejection, and post-normalization risk checks are explicit.
+- Research wording could be misread as implementation or live authorization unless non-activation gates remain prominent.
+
+## Rollback
+
+With operator approval, revert only the five documentation changes listed above. Because this plan permits no source, configuration, credential, connection, account, or runtime mutation, rollback must require no service shutdown, account action, credential rotation, or external-state recovery.
+
+## Progress Log
+
+- 2026-06-21: The Phase 22 offline MT5/prop-account research plan was drafted as Proposed.
+- 2026-06-21: The operator authorized documentation-only authority reconciliation and research artifact creation while preserving implementation NO-GO.
+- 2026-06-21: Repository and authority preflight found a clean `main` worktree and obsolete Nobitex language only in the active roadmap.
+
+## Deviations
+
+The operator described the completed deep-research memo as available research input, but no separate memo file was present in the supplied attachment directory. This documentation uses only the memo findings enumerated in the operator objective and does not add provider-specific or version-sensitive claims.
+
+## Completion Evidence
+
+The research-only approval gate is the explicit operator decision plus reconciliation of `PLANS.md`, `docs/ROADMAP.md`, and `docs/PROJECT_STATE.md`.
+
+Documentation verification completed on 2026-06-21:
+
+- `git status --short` listed only the five expected documentation paths.
+- `git diff --name-status` and `git diff --stat` showed only tracked authority/index documentation changes; the new research file remained intentionally untracked for operator review.
+- `git diff --check` passed with no output.
+- `git diff --no-index --check /dev/null docs/PHASE22_OFFLINE_MT5_PROP_RESEARCH.md` reported no whitespace errors; exit status `1` was the expected no-index difference status for a new file.
+- The placeholder audit returned no hits.
+- Authority scans returned no obsolete Phase 22 Nobitex assignment or `Software Alignment` title, no out-of-scope changed path, and no MT5-native lifecycle schema in the three active authority documents.
+- CMake and CTest were skipped because no source, CMake, test, runtime, or configuration file changed.
+
+This evidence does not satisfy or relax any software-implementation gate.
+
+## Final Outcome
+
+Approved for research-only work by explicit operator instruction after authority reconciliation. Documentation-only offline MT5/prop-account research is authorized within this plan's boundaries. Phase 22 software implementation, MT5 connectivity, credentials, account access, broker or prop-firm selection, real orders, sandbox/live use, live trading, and Phase 23 activation remain Blocked / NO-GO.
