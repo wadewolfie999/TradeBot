@@ -69,20 +69,30 @@ Exit criteria:
 - Integration architecture ADR is accepted by operator decision.
 - Phase 22 remains blocked until separate operator-approved scoping, verification strategy, and rollback path exist.
 
-### Phase 22: Software Alignment
+### Phase 22: Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness
 
 Purpose:
 
-- Implement only the approved Phase 21 architecture and contracts.
+- Align TradeBot execution boundaries around broker-neutral contracts and research offline how MT5-facing integration classes and synthetic prop-account rules could map to those boundaries without selecting a provider or activating implementation.
 
-Entry criteria:
+Current authorization:
 
-- Phase 21 artifacts are approved.
-- Phase 22 scope is frozen.
-- Design changes are prohibited unless the work returns to Phase 21.
-- Required verification strategy and rollback path are accepted.
+- Broker-neutral contract scoping and offline MT5/prop-account documentation and research are GO.
+- Phase 22 software implementation remains Blocked / NO-GO.
 
-Exit criteria:
+Authorized scoping and research:
+
+- Document broker-neutral order lifecycle, account and equity snapshots, position reconciliation, account and symbol metadata, deterministic quantity normalization, lot sizing, execution-result mapping, failure handling, synthetic and configurable prop-rule dimensions, deterministic fixtures, replay validation, risks, and non-activation safeguards.
+- Keep MT5-specific transport, terminal bridges, broker APIs, credentials, account access, network connectivity, real or sandbox order routing, broker selection, and prop-firm selection outside the authorization.
+- Make no C++, CMake, test, runtime, configuration, data, credential, risk-limit, connectivity, or live-trading changes under the scoping and research authorization.
+
+Future implementation entry criteria:
+
+- Operator separately approves a bounded implementation plan and explicit implementation GO.
+- Source scope and contract decisions are frozen, required adapter, risk, and replay tests are defined, and an accepted rollback path exists.
+- Dependencies on broker, prop-firm, account, platform, connectivity, credential, or other Phase 23+ decisions are resolved only when the approved implementation actually requires them.
+
+Future implementation exit criteria:
 
 - Approved contracts are implemented without design drift.
 - Deterministic tests pass before live-capable paths are considered.
