@@ -60,7 +60,7 @@
 
 - Phase 21 is planning-only.
 - Phase 21 artifacts are approved by operator decision.
-- Phase 22 requires separate operator approval and remains Blocked / NO-GO.
+- Bounded broker-neutral Phase 22 implementation is operator-approved under `PLAN-20260624-workstream-i-broker-neutral-completion`; broker-dependent and live work remain Blocked / NO-GO.
 - New skills are not active unless explicitly approved and installed.
 - ADR status must be respected before treating architecture decisions as canonical.
 

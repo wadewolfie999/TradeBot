@@ -120,10 +120,10 @@ build/phase18_burnin 10000
 GO to Phase 22 implementation only if:
 
 - [x] Phase 21 artifacts are approved.
-- [ ] Replay compatibility risks are documented.
-- [ ] Deterministic fixture strategy is defined.
-- [ ] Existing Phase 18 replay tests are expected to remain valid.
-- [ ] Any new schema has a migration and rollback plan.
+- [x] Replay compatibility risks are documented.
+- [x] Deterministic fixture strategy is defined.
+- [x] Existing Phase 18 replay tests are expected to remain valid.
+- [x] Any new schema has a migration and rollback plan.
 
 NO-GO if:
 
@@ -134,4 +134,4 @@ NO-GO if:
 - [ ] Broker-event simulation can mutate portfolio without confirmed fill evidence.
 - [ ] Risk state cannot be reconstructed or validated after replay.
 
-Current status: Blocked / NO-GO for Phase 22 implementation until scoping, tests, and rollback are explicitly approved.
+Current status: In Progress for the bounded broker-neutral implementation under `PLAN-20260624-workstream-i-broker-neutral-completion`. The unchecked NO-GO conditions remain active acceptance gates; broker-dependent and live work remain unauthorized.

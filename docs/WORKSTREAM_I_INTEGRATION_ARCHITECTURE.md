@@ -5,7 +5,7 @@
 - Purpose: define the Phase 21 infrastructure-alignment architecture for the technical integration layer between the TradeBot core engine and future broker or exchange interfaces.
 - Authority level: planning and architecture guidance below accepted ADRs, `RISK_POLICY.md`, and `ARCHITECTURE.md`; above Phase 22 implementation work once approved by the operator.
 - Audience: operator, maintainers, Codex, implementers, reviewers, testers, and future integration agents.
-- Status: Phase 21 planning artifact - Approved. This document does not authorize Phase 22 implementation, live trading, broker-specific integration, credential changes, or risk-limit changes.
+- Status: Phase 21 architecture - Approved. Bounded broker-neutral Phase 22 implementation is authorized by `PLAN-20260624-workstream-i-broker-neutral-completion`; live trading, broker-specific integration, credential changes, and risk-limit changes remain unauthorized.
 
 Workstream I is a planning layer. It defines boundaries, constraints, contracts, and validation gates. It must not be treated as implemented behavior until Phase 22 is separately approved and completed.
 
@@ -36,10 +36,9 @@ In scope:
 - Determinism and replay compatibility requirements.
 - Validation gates for Phase 21 to Phase 22 transition.
 
-Out of scope:
+Out of scope for the approved broker-neutral implementation:
 
 - Broker-specific REST, WebSocket, FIX, authentication, symbol, order-type, or error-code schemas.
-- Source implementation.
 - Live trading, real orders, account mutation, or external venue state mutation.
 - Credential edits or credential inspection.
 - Risk-limit, position-sizing, drawdown, halt, close-only, fee, or slippage default changes.
@@ -73,18 +72,18 @@ Exit criteria:
 
 Purpose:
 
-- Align TradeBot execution boundaries around broker-neutral contracts and research offline how MT5-facing integration classes and synthetic prop-account rules could map to those boundaries without selecting a provider or activating implementation.
+- Implement TradeBot execution boundaries around broker-neutral contracts and deterministic simulation while retaining offline MT5/prop-account research as downstream compatibility evidence without selecting a provider.
 
 Current authorization:
 
-- Broker-neutral contract scoping and offline MT5/prop-account documentation and research are GO.
-- Phase 22 software implementation remains Blocked / NO-GO.
+- Broker-neutral contracts, deterministic simulation, execution/risk alignment, persistence, replay validation, tests, and measurements are GO under `PLAN-20260624-workstream-i-broker-neutral-completion`.
+- Broker-dependent implementation and live trading remain Blocked / NO-GO.
 
 Authorized scoping and research:
 
 - Document broker-neutral order lifecycle, account and equity snapshots, position reconciliation, account and symbol metadata, deterministic quantity normalization, lot sizing, execution-result mapping, failure handling, synthetic and configurable prop-rule dimensions, deterministic fixtures, replay validation, risks, and non-activation safeguards.
 - Keep MT5-specific transport, terminal bridges, broker APIs, credentials, account access, network connectivity, real or sandbox order routing, broker selection, and prop-firm selection outside the authorization.
-- Make no C++, CMake, test, runtime, configuration, data, credential, risk-limit, connectivity, or live-trading changes under the scoping and research authorization.
+- Make no credential, risk-limit, external connectivity, broker-specific, account, real/sandbox order, or live-trading changes under the broker-neutral authorization.
 
 Future implementation entry criteria:
 
@@ -257,7 +256,7 @@ NO-GO if:
 - External broker details are required but not approved.
 - Determinism, risk isolation, credential handling, or replay compatibility are uncertain.
 
-Current status: Blocked / NO-GO for Phase 22 implementation.
+Current status: In Progress for the bounded broker-neutral implementation under `PLAN-20260624-workstream-i-broker-neutral-completion`; broker-dependent and live work remain Blocked / NO-GO.
 
 ## Backlog
 

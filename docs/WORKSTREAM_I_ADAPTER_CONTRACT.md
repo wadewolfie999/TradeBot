@@ -237,4 +237,4 @@ Implementation must halt if:
 - Risk behavior needs design changes.
 - Replay compatibility cannot be proven.
 
-Current status: Phase 21 contract approved; Phase 22 implementation remains Blocked / NO-GO.
+Current status: Phase 21 contract approved and binding for the bounded broker-neutral implementation authorized by `PLAN-20260624-workstream-i-broker-neutral-completion`. Broker-dependent and live implementation remain Blocked / NO-GO.
