@@ -5,7 +5,7 @@
 - Purpose: record broker-neutral, offline research for Phase 22 Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness.
 - Authority level: research artifact under the operator-approved research-only plan and below explicit operator instruction, accepted ADRs, `RISK_POLICY.md`, `ARCHITECTURE.md`, and approved Workstream I contracts.
 - Plan: `PLAN-20260621-phase22-offline-mt5-prop-research` in `../PLANS.md`.
-- Status: documentation/research GO; Phase 22 software implementation Blocked / NO-GO.
+- Status: research artifact complete; bounded broker-neutral implementation is authorized under `PLAN-20260624-workstream-i-broker-neutral-completion`, without changing this document's research-only authority.
 - Audience: operator, maintainers, reviewers, research agents, and future implementation planners.
 
 This document is research evidence and a future-test specification. It is not an implementation contract, provider recommendation, broker selection, prop-firm selection, account-readiness claim, connectivity approval, credential approval, or live-trading approval.

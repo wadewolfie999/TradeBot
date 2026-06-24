@@ -184,6 +184,125 @@ Do not delete abandoned or superseded plans if they contain decision-relevant hi
 ## Final Outcome
 ```
 
+# Active Plan: Workstream I Broker-Neutral Completion
+
+- Plan ID: `PLAN-20260624-workstream-i-broker-neutral-completion`
+- Status: In Progress — Operator GO Granted
+- Owner: Operator
+- Implementer: Codex
+- Review authority: Operator
+- Related roadmap phase: Phase 22: Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness
+- Related issue or decision: ADR 0003 and explicit operator implementation directive dated 2026-06-24
+- Created: 2026-06-24
+- Updated: 2026-06-24
+
+## Objective
+
+Finish the broker-neutral Workstream I implementation while preserving deterministic `BACKTEST`, locally simulated `PAPER`, existing financial risk limits, and live-trading NO-GO. Provider selection and concrete broker integration remain Workstream II Phases 23-24.
+
+Success requires explicit lifecycle contracts, a provider-neutral adapter boundary below `BrokerGateway`, deterministic simulation/replay, quantity-aware risk evaluation, versioned snapshots and lifecycle persistence, full regression evidence, synchronized documentation, and no provider schema leakage into the core.
+
+## Context
+
+Phase 21 is Complete — Approved and ADR 0003 is Accepted. The Phase 22 research artifact and Workstream I contracts define the required broker-neutral behavior, but current source still conflates submission with synchronous fill, represents cancellation as a Boolean, lacks a concrete adapter interface and durable lifecycle ledger, and provides only limited reconciliation/account metadata. The operator explicitly authorized this bounded broker-neutral implementation on 2026-06-24.
+
+## Scope
+
+- Broker-neutral fixed-point values, order lifecycle, failure, health, account, instrument, reconciliation, rule-profile, and risk-decision contracts.
+- `OrderLifecycleStore` with legal transitions, stable internal IDs, idempotency, duplicate prevention, partial/unknown state, and audit history.
+- `IBrokerAdapter` below `BrokerGateway` and a deterministic local adapter for PAPER/tests.
+- Gateway normalization, ID correlation, adapter health, explicit cancel/reconciliation events, and fail-closed mode behavior.
+- `ExecutionEngine` submission semantics and final normalized-quantity `RiskEngine` evaluation.
+- Provider-neutral synthetic rule evaluation with no provider thresholds.
+- Versioned lifecycle/snapshot persistence, deterministic replay fixtures, metrics, tests, measurements, documentation, and closure evidence.
+
+## Out of Scope
+
+- Broker, prop firm, program, account, instrument universe, or adapter-topology selection.
+- Provider APIs, MT5 terminal integration, external endpoints, network sessions, credentials, certificates, account access, or captured private data.
+- Sandbox or real orders, live trading, Phase 23 or Phase 24 activation.
+- Changes to existing risk limits, drawdown thresholds, position sizing, fees, slippage, kill-switch behavior, or live-readiness requirements.
+- Generated artifact publication or profitability/production-readiness claims.
+
+## Preconditions
+
+- Operator implementation GO is recorded by the 2026-06-24 directive.
+- ADR 0003 and the approved Phase 21 artifacts remain authoritative.
+- Work begins from current clean `main` and proceeds as sequential reviewed PRs.
+- Any provider-dependent assumption stops the affected package and is deferred to Phases 23-24.
+
+## Assumptions
+
+- No external consumer compatibility guarantee exists beyond repository call sites and documented behavior.
+- Existing `BACKTEST` results and Phase 13-18 tests remain regression authority.
+- Synthetic adapter events and rule profiles are deterministic, provider-neutral, and safe to version as test code or small labelled fixtures.
+
+## Invariants
+
+- Strategy and allocation code never submit directly to an adapter.
+- New exposure passes preliminary and final normalized-quantity risk checks.
+- Acknowledgement never implies fill; only validated deduplicated execution or approved reconciliation mutates portfolio/risk state.
+- `BACKTEST` performs no network action; `PAPER` stays locally simulated; `LIVE` without a separately approved concrete adapter fails closed.
+- No adapter event, reconnect, or snapshot clears halt or close-only automatically.
+- No secret values, provider-native schemas, account data, or generated outputs enter Git.
+
+## Files Expected to Change
+
+- Broker-neutral contract, lifecycle, adapter, gateway, execution, risk, metrics, and serialization headers/sources under `include/` and `src/`.
+- `tests/phase22_tests.cpp`, deterministic test helpers, `CMakeLists.txt`, and a broker-neutral benchmark only after correctness tests exist.
+- Architecture, testing, configuration, data, project-state, roadmap, Workstream I, and plan documentation.
+
+## Implementation Steps
+
+1. Activate authority and record the bounded GO before source edits.
+2. Add broker-neutral contracts, fixed-point arithmetic, lifecycle storage, and initial Phase 22 tests.
+3. Add `IBrokerAdapter`, deterministic PAPER adapter, and gateway normalization/event handling.
+4. Integrate explicit submission/lifecycle behavior with final quantity-aware risk checks and provider-neutral rule evaluation.
+5. Add versioned persistence, deterministic replay/reconciliation, metrics, and failure/restart coverage.
+6. Add reproducible measurements after correctness, synchronize documentation, and close only on reviewed evidence.
+
+## Verification
+
+```sh
+cmake -S . -B build
+cmake --build build
+ctest --test-dir build -R phase22_tests --output-on-failure
+ctest --test-dir build -R 'phase13_tests|phase17_tests|phase18_tests' --output-on-failure
+ctest --test-dir build --output-on-failure
+git diff --check
+```
+
+Required scenarios include acknowledgement without fill, rejection, partial/final fill, cancel rejection/confirmation, cancel-fill race, timeout, expiry, unknown state, reconciliation, duplicate/stale/out-of-order events, halt/close-only, stale/missing snapshots, fixed-point normalization, version migration, restart deduplication, deterministic replay, network-free `BACKTEST`, repeatable `PAPER`, and fail-closed `LIVE` without an approved adapter.
+
+## Risks
+
+- Duplicate economic mutation, invalid lifecycle transitions, unsafe rounding, stale snapshots, restart deduplication loss, risk-gate bypass, provider leakage, mode confusion, and unbounded lifecycle memory.
+- Broad interface changes may create regression risk across execution, benchmarks, and main wiring; changes therefore remain sequential and independently revertible.
+
+## Rollback
+
+- Revert each merged implementation PR independently in reverse order with operator approval.
+- Retain version-1 snapshot reading until version-2 migration evidence is accepted.
+- If a package requires provider-specific behavior or ADR boundary changes, stop before merging it and return Phase 22 to Blocked pending review.
+
+## Progress Log
+
+- 2026-06-24: Operator explicitly directed implementation of this bounded broker-neutral plan.
+- 2026-06-24: Local `main` fast-forwarded to `1a32f7f`; tracked worktree clean; local-only handoff excluded through `.git/info/exclude`.
+- 2026-06-24: Authority-activation PR started; no source changes made before activation.
+
+## Deviations
+
+- None.
+
+## Completion Evidence
+
+Pending sequential PRs, build/test/replay/risk/benchmark evidence, documentation synchronization, and operator review.
+
+## Final Outcome
+
+In Progress. Broker-neutral implementation is authorized only within this plan. Broker-dependent work and live trading remain unauthorized.
+
 # Completed Plan: Phase 22 Execution Adapter Re-Scope
 
 - Plan ID: `PLAN-20260621-phase22-execution-adapter-rescope`
