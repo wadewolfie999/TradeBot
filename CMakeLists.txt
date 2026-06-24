@@ -35,6 +35,7 @@ set(CORE_SOURCES
     src/LocalDataReplayAdapter.cpp
     src/L2OrderBook.cpp
     src/TriggerOrderManager.cpp
+    src/OrderLifecycleStore.cpp
 )
 
 add_library(tradebot_core_lib ${CORE_SOURCES})
@@ -92,4 +93,8 @@ if (BUILD_TESTING)
     add_executable(phase18_tests tests/phase18_tests.cpp)
     target_link_libraries(phase18_tests PRIVATE tradebot_core_lib)
     add_test(NAME phase18_tests COMMAND phase18_tests)
+
+    add_executable(phase22_tests tests/phase22_tests.cpp)
+    target_link_libraries(phase22_tests PRIVATE tradebot_core_lib)
+    add_test(NAME phase22_tests COMMAND phase22_tests)
 endif()
