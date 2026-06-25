@@ -24,7 +24,7 @@ The roadmap is reconstructed from verified repository evidence, not from unverif
 - ADR acceptance records an architecture decision; it does not authorize source implementation.
 - A blocked phase requires exact operator GO before its blocked activity may begin.
 - No phase may be skipped.
-- Bounded broker-neutral Phase 22 implementation is authorized under `PLAN-20260624-workstream-i-broker-neutral-completion`. Broker-dependent implementation and live trading remain Blocked / NO-GO.
+- Bounded broker-neutral Phase 22 implementation is complete and accepted under `PLAN-20260624-workstream-i-broker-neutral-completion`. Broker-dependent implementation and live trading remain Blocked / NO-GO.
 - Workstream II must not imply that a broker has been selected. Broker selection requires an explicit operator decision in Phase 23.
 - Workstream III must not imply that a documentation platform has been selected. Platform selection requires an explicit operator decision in Phase 25.
 - Nobitex is omitted from active Phase 22 scope. Phase 22 research must remain broker-neutral and must not select a broker, prop firm, program, account, or MT5 bridge topology.
@@ -38,7 +38,7 @@ This table is the canonical roadmap state for Workstreams I-III. `PROJECT_STATE.
 | Workstream | Phase | Status | Authorized scope and gate |
 | --- | --- | --- | --- |
 | I - Technical Integration | Phase 21: Infrastructure Alignment | Complete — Approved | Internal TradeBot integration architecture and boundary alignment. ADR 0003 is Accepted; Phase 21 planning artifacts are approved. |
-| I - Technical Integration | Phase 22: Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness | In Progress — broker-neutral implementation only | `PLAN-20260624-workstream-i-broker-neutral-completion` authorizes provider-neutral contracts, deterministic simulation, execution/risk alignment, persistence, replay, tests, and measurements. No broker or prop firm selection, connection method, connectivity, credentials, account access, real or sandbox orders, broker-dependent implementation, or live trading is authorized. |
+| I - Technical Integration | Phase 22: Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness | Complete — Accepted | `PLAN-20260624-workstream-i-broker-neutral-completion` closed the provider-neutral contracts, deterministic simulation, execution/risk alignment, persistence, replay, tests, and documentation boundary. No broker or prop firm selection, connection method, connectivity, credentials, account access, real or sandbox orders, broker-dependent implementation, or live trading is authorized. |
 | II - Brokerage & Operations | Phase 23: Broker Selection | Not Started | Identify and evaluate the Most Optimized Broker (M.O.B.). No broker is selected without an explicit operator decision. |
 | II - Brokerage & Operations | Phase 24: Connection Protocol | Blocked | Define the TradeBot-to-selected-M.O.B. account connection protocol only after Phase 23 selection and operator approval of connection scope. |
 | III - Documentation & Knowledge Management | Phase 25: Documentation Platform Evaluation & Selection | Not Started | Evaluate and select the documentation platform. No platform is selected. |
@@ -122,9 +122,9 @@ The Foundation through Phase 19 entries below are historical context reconstruct
 - Compatibility boundary: MT5-specific transport, terminal bridges, broker APIs, credentials, account access, network connectivity, real order routing, broker selection, and prop-firm selection remain outside the authorization.
 - Research artifact: `PHASE22_OFFLINE_MT5_PROP_RESEARCH.md`.
 - Documentation validation: Git diff hygiene, documentation audits, cross-document authority consistency, broker-neutrality review, deterministic contract review, and non-activation wording review.
-- Future implementation entry conditions: a separately approved bounded implementation plan, frozen scope, explicit operator GO, accepted contract decisions, required adapter/risk/replay tests, rollback path, and resolution of all Phase 23+ decisions that the implementation actually depends on.
-- Stop/go gate: source, tests, CMake, runtime, persistence, and documentation may change only inside the approved broker-neutral plan. Broker-specific implementation, MT5 connection or login, credentials, account access, broker or prop-firm selection, real or sandbox orders, live trading, risk-limit changes, and Phase 23 activation remain prohibited.
-- Status: In Progress — broker-neutral implementation only; broker-dependent and live work Blocked / NO-GO.
+- Implementation closure evidence: PR #14 merged broker-neutral lifecycle contracts and PR #15 merged the accepted adapter-gateway implementation with local CMake/CTest evidence and passing GitHub validation.
+- Stop/go gate: Phase 22 is closed at the accepted broker-neutral boundary. Broker-specific implementation, MT5 connection or login, credentials, account access, broker or prop-firm selection, real or sandbox orders, live trading, risk-limit changes, and Phase 23 activation remain prohibited without separate explicit operator approval.
+- Status: Complete — Accepted; broker-dependent and live work Blocked / NO-GO.
 
 ### Phase 23: Workstream II Broker Selection
 
@@ -184,4 +184,4 @@ The Foundation through Phase 19 entries below are historical context reconstruct
 
 ## Next Roadmap Action
 
-The next major step is sequential execution of `PLAN-20260624-workstream-i-broker-neutral-completion` with review at every PR boundary. MT5 connectivity, credentials, account access, broker or prop-firm selection, broker-dependent implementation, real or sandbox orders, live trading, risk-limit changes, and Phase 23 activation remain unauthorized.
+The next major step is an explicit operator decision on whether to open Phase 23 broker-selection evaluation. MT5 connectivity, credentials, account access, broker or prop-firm selection, broker-dependent implementation, real or sandbox orders, live trading, risk-limit changes, and Phase 23 activation remain unauthorized until separately approved.

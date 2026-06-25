@@ -5,7 +5,7 @@
 - Purpose: authoritative current-state summary for TradeBot.
 - Authority level: current-state evidence below active approved plans and above the roadmap; Workstreams I-III phase definitions and statuses are delegated to `ROADMAP.md`.
 - Audience: operator, maintainers, Codex, contributors, reviewers, and handoff recipients.
-- Last documentation/state audit: 2026-06-24 in `/Users/vaheedgorgeen/TradeBot`.
+- Last documentation/state audit: 2026-06-25 in `/Users/vaheedgorgeen/TradeBot`.
 - Last CMake/CTest verification evidence: 2026-06-25.
 
 This document represents current state only. Historical execution belongs in Git commits, pull requests, issues, ADRs, and handoffs.
@@ -22,7 +22,7 @@ This document represents current state only. Historical execution belongs in Git
 `ROADMAP.md` is the deterministic authority for Workstreams I-III. Current summary:
 
 - Phase 21: Complete — Approved; ADR 0003 is Accepted.
-- Phase 22: Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness; bounded broker-neutral implementation is In Progress under `PLAN-20260624-workstream-i-broker-neutral-completion`.
+- Phase 22: Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness; Complete — Accepted under `PLAN-20260624-workstream-i-broker-neutral-completion`.
 - Phase 23: Not Started; no broker is selected.
 - Phase 24: Blocked pending Phase 23 selection and operator-approved connection scope.
 - Phase 25: Not Started; no documentation platform is selected.
@@ -38,17 +38,17 @@ This document represents current state only. Historical execution belongs in Git
   - ADR 0001: deprecate offline MOP/MOR/SS workflow.
   - ADR 0002: GitHub as long-term system of record after local cleanup is committed and pushed.
   - ADR 0003: Workstream I broker-neutral integration architecture.
+- Accepted Phase 22 broker-neutral implementation under `PLAN-20260624-workstream-i-broker-neutral-completion`; broker-dependent connectivity remains unauthorized.
 - Runtime modes verified in `SystemConfig`: `BACKTEST`, `PAPER`, `LIVE`; default is `BACKTEST`.
 - Credential loading verified through `AuthManager` and `SystemConfig` env names `AIIO_API_KEY` and `AIIO_API_SECRET`.
 
 ## In-Progress Work
 
-- Approved Phase 22 broker-neutral implementation under `PLAN-20260624-workstream-i-broker-neutral-completion`; broker-dependent connectivity remains unauthorized.
 - Repository governance and Codex skill-system maintenance.
 
 ## Blocked Or Constrained Work
 
-- Phase 22 implementation is limited to the approved broker-neutral plan. Any external, broker-specific, platform-specific, credential, account, or connectivity assumption remains Blocked / NO-GO.
+- Phase 22 is closed at the accepted broker-neutral Workstream I boundary. Any external, broker-specific, platform-specific, credential, account, order-routing, or connectivity assumption remains Blocked / NO-GO.
 - MT5 connectivity, terminal integration or login, credentials, account or prop-account access, broker or prop-firm selection, real or sandbox order routing, live trading, and Phase 23 activation remain unauthorized.
 - Phase 24 is blocked until Phase 23 selects a broker and the operator approves connection scope.
 - Phase 26 is blocked until Phase 25 selects a documentation platform and the operator approves documentation architecture.
@@ -99,8 +99,8 @@ Results:
 
 ## Next Safe Action
 
-Execute `PLAN-20260624-workstream-i-broker-neutral-completion` through sequential reviewed PRs. Do not connect or log in to MT5, access an account, use credentials, select a broker or prop firm, start Phase 23, route real or sandbox orders, enable live trading, or alter risk defaults without separate operator approval.
+Review and merge this authority-doc closure branch if accepted, then stop until the operator explicitly authorizes the next phase. Do not connect or log in to MT5, access an account, use credentials, select a broker or prop firm, start Phase 23, route real or sandbox orders, enable live trading, or alter risk defaults without separate operator approval.
 
 ## Next Professional Halting Point
 
-Stop at each clean PR boundary with validation and handoff evidence. Broker-dependent implementation and live trading remain explicitly Blocked / NO-GO. Do not skip phases, delete generated artifacts, or perform connectivity, credential, account, broker-selection, real-order, sandbox, or live operations without explicit operator approval.
+Stop after authority-doc closure unless the operator explicitly opens the next phase. Broker-dependent implementation and live trading remain explicitly Blocked / NO-GO. Do not skip phases, delete generated artifacts, or perform connectivity, credential, account, broker-selection, real-order, sandbox, or live operations without explicit operator approval.

@@ -5,7 +5,7 @@
 - Purpose: define broker-neutral adapter contract expectations for Phase 21 infrastructure alignment.
 - Authority level: planning contract below accepted ADRs, `RISK_POLICY.md`, and `ARCHITECTURE.md`; binding for Phase 22 only after operator approval.
 - Audience: operator, implementers, reviewers, testers, and future adapter authors.
-- Status: Phase 21 planning contract - Approved. This document does not authorize implementation, live trading, external API use, or credential changes.
+- Status: Phase 21 planning contract - Approved. The bounded broker-neutral implementation is complete and accepted under `PLAN-20260624-workstream-i-broker-neutral-completion`; this document does not authorize live trading, external API use, broker-specific implementation, or credential changes.
 
 This contract intentionally avoids broker-specific API shapes. Broker-specific schemas, order flags, authentication flows, and endpoint semantics require a separate approved plan.
 
@@ -237,4 +237,4 @@ Implementation must halt if:
 - Risk behavior needs design changes.
 - Replay compatibility cannot be proven.
 
-Current status: Phase 21 contract approved and binding for the bounded broker-neutral implementation authorized by `PLAN-20260624-workstream-i-broker-neutral-completion`. Broker-dependent and live implementation remain Blocked / NO-GO.
+Current status: Phase 21 contract approved and satisfied by the bounded broker-neutral implementation accepted under `PLAN-20260624-workstream-i-broker-neutral-completion`. Broker-dependent and live implementation remain Blocked / NO-GO.
