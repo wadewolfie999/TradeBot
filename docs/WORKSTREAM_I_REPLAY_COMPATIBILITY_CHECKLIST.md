@@ -134,4 +134,4 @@ NO-GO if:
 - [ ] Broker-event simulation can mutate portfolio without confirmed fill evidence.
 - [ ] Risk state cannot be reconstructed or validated after replay.
 
-Current status: In Progress for the bounded broker-neutral implementation under `PLAN-20260624-workstream-i-broker-neutral-completion`. The unchecked NO-GO conditions remain active acceptance gates; broker-dependent and live work remain unauthorized.
+Current status: Complete — Accepted for the bounded broker-neutral implementation under `PLAN-20260624-workstream-i-broker-neutral-completion`. The unchecked NO-GO conditions remain active for broker-dependent, live, or future replay-affecting work; broker-dependent and live work remain unauthorized.

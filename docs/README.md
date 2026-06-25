@@ -100,7 +100,7 @@ Skill workflow rules:
 - `tradebot-handoff` is the final step after multi-skill workflows.
 - `tradebot-performance-review` interprets performance-change risk; `tradebot-benchmark-review` validates benchmark measurement quality.
 - `tradebot-pr-readiness-review` verifies merge readiness after required specialist reviews; it does not replace them.
-- Accepted ADRs and approved Phase 21 artifacts do not independently authorize Phase 22 implementation. Bounded broker-neutral implementation is authorized only by `PLAN-20260624-workstream-i-broker-neutral-completion`; broker-dependent and live work remain Blocked / NO-GO.
+- Accepted ADRs and approved Phase 21 artifacts did not independently authorize Phase 22 implementation. Bounded broker-neutral implementation is complete and accepted under `PLAN-20260624-workstream-i-broker-neutral-completion`; broker-dependent and live work remain Blocked / NO-GO.
 
 ## Documentation Rules
 

@@ -5,7 +5,7 @@
 - Purpose: define the Phase 21 infrastructure-alignment architecture for the technical integration layer between the TradeBot core engine and future broker or exchange interfaces.
 - Authority level: planning and architecture guidance below accepted ADRs, `RISK_POLICY.md`, and `ARCHITECTURE.md`; above Phase 22 implementation work once approved by the operator.
 - Audience: operator, maintainers, Codex, implementers, reviewers, testers, and future integration agents.
-- Status: Phase 21 architecture - Approved. Bounded broker-neutral Phase 22 implementation is authorized by `PLAN-20260624-workstream-i-broker-neutral-completion`; live trading, broker-specific integration, credential changes, and risk-limit changes remain unauthorized.
+- Status: Phase 21 architecture - Approved. Bounded broker-neutral Phase 22 implementation is complete and accepted under `PLAN-20260624-workstream-i-broker-neutral-completion`; live trading, broker-specific integration, credential changes, and risk-limit changes remain unauthorized.
 
 Workstream I is a planning layer. It defines boundaries, constraints, contracts, and validation gates. It must not be treated as implemented behavior until Phase 22 is separately approved and completed.
 
@@ -256,7 +256,7 @@ NO-GO if:
 - External broker details are required but not approved.
 - Determinism, risk isolation, credential handling, or replay compatibility are uncertain.
 
-Current status: In Progress for the bounded broker-neutral implementation under `PLAN-20260624-workstream-i-broker-neutral-completion`; broker-dependent and live work remain Blocked / NO-GO.
+Current status: Complete — Accepted for the bounded broker-neutral implementation under `PLAN-20260624-workstream-i-broker-neutral-completion`; broker-dependent and live work remain Blocked / NO-GO.
 
 ## Backlog
 

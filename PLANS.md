@@ -184,17 +184,17 @@ Do not delete abandoned or superseded plans if they contain decision-relevant hi
 ## Final Outcome
 ```
 
-# Active Plan: Workstream I Broker-Neutral Completion
+# Completed Plan: Workstream I Broker-Neutral Completion
 
 - Plan ID: `PLAN-20260624-workstream-i-broker-neutral-completion`
-- Status: In Progress — Operator GO Granted
+- Status: Complete — Accepted
 - Owner: Operator
 - Implementer: Codex
 - Review authority: Operator
 - Related roadmap phase: Phase 22: Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness
 - Related issue or decision: ADR 0003 and explicit operator implementation directive dated 2026-06-24
 - Created: 2026-06-24
-- Updated: 2026-06-24
+- Updated: 2026-06-25
 
 ## Objective
 
@@ -204,7 +204,7 @@ Success requires explicit lifecycle contracts, a provider-neutral adapter bounda
 
 ## Context
 
-Phase 21 is Complete — Approved and ADR 0003 is Accepted. The Phase 22 research artifact and Workstream I contracts define the required broker-neutral behavior, but current source still conflates submission with synchronous fill, represents cancellation as a Boolean, lacks a concrete adapter interface and durable lifecycle ledger, and provides only limited reconciliation/account metadata. The operator explicitly authorized this bounded broker-neutral implementation on 2026-06-24.
+Phase 21 is Complete — Approved and ADR 0003 is Accepted. The Phase 22 research artifact and Workstream I contracts defined the required broker-neutral behavior. The operator explicitly authorized this bounded broker-neutral implementation on 2026-06-24, accepted the Operator Acceptance Candidate on 2026-06-25, and PR #15 merged the accepted adapter-gateway implementation into `main`.
 
 ## Scope
 
@@ -290,7 +290,8 @@ Required scenarios include acknowledgement without fill, rejection, partial/fina
 - 2026-06-24: Operator explicitly directed implementation of this bounded broker-neutral plan.
 - 2026-06-24: Local `main` fast-forwarded to `1a32f7f`; tracked worktree clean; local-only handoff excluded through `.git/info/exclude`.
 - 2026-06-24: Authority-activation PR started; no source changes made before activation.
-- 2026-06-25: Adapter-gateway slice advanced toward Operator Acceptance Candidate with `IBrokerAdapter`, deterministic PAPER adapter, gateway normalization/lifecycle dispatch, fail-closed mode tests, and local configure/build/CTest validation; operator acceptance and Phase 22 closure remain pending.
+- 2026-06-25: Adapter-gateway slice advanced to Operator Acceptance Candidate with `IBrokerAdapter`, deterministic PAPER adapter, gateway normalization/lifecycle dispatch, fail-closed mode tests, and local configure/build/CTest validation.
+- 2026-06-25: Operator declared the candidate accepted; PR #15 merged `feat: advance Workstream I to acceptance candidate` into `main` as merge commit `ba8643c69bd14e2ffa3822f79e5bf44c58c539fc`.
 
 ## Deviations
 
@@ -298,11 +299,19 @@ Required scenarios include acknowledgement without fill, rejection, partial/fina
 
 ## Completion Evidence
 
-Pending sequential PRs, build/test/replay/risk/benchmark evidence, documentation synchronization, and operator review.
+- PR #14 merged the broker-neutral lifecycle contracts and Phase 22 test foundation.
+- PR #15 merged `IBrokerAdapter`, deterministic PAPER adapter behavior, `BrokerGateway` normalization/lifecycle dispatch, fail-closed mode coverage, and synchronized architecture/project-state/plan documentation.
+- Local validation for the accepted candidate passed on 2026-06-25:
+  - `cmake -S . -B build`
+  - `cmake --build build`
+  - `ctest --test-dir build -R phase22_tests --output-on-failure`
+  - `ctest --test-dir build --output-on-failure`
+- GitHub validation for PR #15 passed before merge.
+- Operator acceptance was declared on 2026-06-25 before this authority-doc closure.
 
 ## Final Outcome
 
-In Progress. Broker-neutral implementation is authorized only within this plan. Broker-dependent work and live trading remain unauthorized.
+Complete — Accepted. Phase 22 broker-neutral implementation is closed at the approved Workstream I boundary. Broker selection, MT5 connectivity, credentials or account access, sandbox or real orders, Phase 23 activation, broker-dependent implementation, and live trading remain unauthorized until separate explicit operator approval.
 
 # Completed Plan: Phase 22 Execution Adapter Re-Scope
 
