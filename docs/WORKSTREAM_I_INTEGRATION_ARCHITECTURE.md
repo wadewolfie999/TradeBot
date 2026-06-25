@@ -3,11 +3,11 @@
 ## Purpose And Authority
 
 - Purpose: define the Phase 21 infrastructure-alignment architecture for the technical integration layer between the TradeBot core engine and future broker or exchange interfaces.
-- Authority level: planning and architecture guidance below accepted ADRs, `RISK_POLICY.md`, and `ARCHITECTURE.md`; above Phase 22 implementation work once approved by the operator.
+- Authority level: approved Workstream I architecture guidance below accepted ADRs, `RISK_POLICY.md`, and `ARCHITECTURE.md`; preserved as the boundary evidence satisfied by accepted Phase 22 implementation.
 - Audience: operator, maintainers, Codex, implementers, reviewers, testers, and future integration agents.
 - Status: Phase 21 architecture - Approved. Bounded broker-neutral Phase 22 implementation is complete and accepted under `PLAN-20260624-workstream-i-broker-neutral-completion`; live trading, broker-specific integration, credential changes, and risk-limit changes remain unauthorized.
 
-Workstream I is a planning layer. It defines boundaries, constraints, contracts, and validation gates. It must not be treated as implemented behavior until Phase 22 is separately approved and completed.
+Workstream I defines boundaries, constraints, contracts, and validation gates. The bounded broker-neutral Phase 22 implementation is now complete and accepted; broker-dependent implementation remains outside this document's authority.
 
 ## Repository Evidence
 
@@ -56,7 +56,7 @@ Entry criteria:
 
 - Repository state, branch, commit, and worktree status are recorded.
 - Phase 18 and Phase 19 L2 validation are treated as baseline continuity evidence.
-- No active Phase 22 implementation has started.
+- No active Phase 22 implementation had started at Phase 21 entry.
 - Operator has approved Phase 21 planning execution.
 
 Exit criteria:
@@ -66,7 +66,7 @@ Exit criteria:
 - Risk matrix is complete.
 - Replay compatibility checklist is complete.
 - Integration architecture ADR is accepted by operator decision.
-- Phase 22 remains blocked until separate operator-approved scoping, verification strategy, and rollback path exist.
+- Phase 22 remained blocked at Phase 21 exit until separate operator-approved scoping, verification strategy, and rollback path existed.
 
 ### Phase 22: Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness
 
@@ -74,9 +74,9 @@ Purpose:
 
 - Implement TradeBot execution boundaries around broker-neutral contracts and deterministic simulation while retaining offline MT5/prop-account research as downstream compatibility evidence without selecting a provider.
 
-Current authorization:
+Closure boundary:
 
-- Broker-neutral contracts, deterministic simulation, execution/risk alignment, persistence, replay validation, tests, and measurements are GO under `PLAN-20260624-workstream-i-broker-neutral-completion`.
+- Broker-neutral contracts, deterministic simulation, execution/risk alignment, persistence, replay validation, tests, and documentation were completed and accepted under `PLAN-20260624-workstream-i-broker-neutral-completion`.
 - Broker-dependent implementation and live trading remain Blocked / NO-GO.
 
 Authorized scoping and research:
@@ -85,13 +85,13 @@ Authorized scoping and research:
 - Keep MT5-specific transport, terminal bridges, broker APIs, credentials, account access, network connectivity, real or sandbox order routing, broker selection, and prop-firm selection outside the authorization.
 - Make no credential, risk-limit, external connectivity, broker-specific, account, real/sandbox order, or live-trading changes under the broker-neutral authorization.
 
-Future implementation entry criteria:
+Accepted implementation entry criteria:
 
 - Operator separately approves a bounded implementation plan and explicit implementation GO.
 - Source scope and contract decisions are frozen, required adapter, risk, and replay tests are defined, and an accepted rollback path exists.
 - Dependencies on broker, prop-firm, account, platform, connectivity, credential, or other Phase 23+ decisions are resolved only when the approved implementation actually requires them.
 
-Future implementation exit criteria:
+Accepted implementation exit criteria:
 
 - Approved contracts are implemented without design drift.
 - Deterministic tests pass before live-capable paths are considered.
@@ -232,7 +232,7 @@ GO only if:
 - All Phase 21 artifacts are present and internally consistent.
 - No broker-specific API assumptions are required.
 - Risk and replay constraints are explicit.
-- Phase 22 scoping can begin without reopening Phase 21 infrastructure decisions.
+- Phase 22 implementation could begin without reopening Phase 21 infrastructure decisions.
 
 NO-GO if:
 

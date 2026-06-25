@@ -56,7 +56,7 @@ find .agents/skills -name SKILL.md -print | sort
 ## Related Skills
 
 - Use `tradebot-adr-review` before ADR status or ADR index changes.
-- Use `tradebot-phase-gate-audit` before phase-transition or Phase 22 status changes.
+- Use `tradebot-phase-gate-audit` before phase-transition, Workstream II/Phase 23, or broker-dependent status changes.
 - Use `tradebot-pr-readiness-review` after documentation sync when preparing PR handoff.
 
 ## Allowed Mutations

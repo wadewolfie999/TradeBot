@@ -87,14 +87,14 @@ Local skill folders contain `SKILL.md` workflow instructions:
 Standard skill workflows:
 
 - Governance/documentation workflow: `tradebot-git-safety`, `tradebot-repo-hygiene`, `tradebot-authority-state-audit`, `tradebot-phase-gate-audit`, `tradebot-adr-review` when ADRs are touched, `tradebot-documentation-sync`, `tradebot-pr-readiness-review`, `tradebot-handoff`.
-- Phase 22 scoping workflow: `tradebot-git-safety`, `tradebot-authority-state-audit`, `tradebot-phase-gate-audit`, `tradebot-integration-architecture-review`, `tradebot-risk-review`, `tradebot-plan-authoring`, `tradebot-pr-readiness-review`, `tradebot-handoff`.
+- Pre-Workstream-II authority workflow: `tradebot-git-safety`, `tradebot-repo-hygiene`, `tradebot-authority-state-audit`, `tradebot-phase-gate-audit`, `tradebot-documentation-sync`, `tradebot-pr-readiness-review`, `tradebot-handoff`.
 - Implementation workflow: `tradebot-git-safety`, `tradebot-repo-hygiene`, `tradebot-plan-authoring`, relevant architecture/risk skill, implementation, `tradebot-cpp-build-test`, `tradebot-market-replay-validation`, `tradebot-l2-orderbook-review` when L2/order-book behavior is touched, `tradebot-execution-pipeline-validation` when order lifecycle is touched, `tradebot-network-live-boundary-review` when live/network/auth/broker boundaries are touched, `tradebot-performance-review` and `tradebot-benchmark-review` when performance is claimed, `tradebot-pr-readiness-review`, `tradebot-handoff`.
 - Agent-loop recovery workflow: `tradebot-agent-loop-control`, `tradebot-git-safety`, `tradebot-authority-state-audit`, one bounded corrective task, then stop and report.
 
 Skill workflow rules:
 
 - `tradebot-documentation-sync` defers to `tradebot-authority-state-audit` when current state is uncertain.
-- `tradebot-plan-authoring` defers to `tradebot-phase-gate-audit` before Phase 22 planning.
+- `tradebot-plan-authoring` defers to `tradebot-phase-gate-audit` before Workstream II/Phase 23 planning.
 - `tradebot-risk-review` cross-references network/live boundary, execution pipeline, and integration architecture reviews for those risk classes.
 - `tradebot-repo-hygiene` and `tradebot-git-safety` remain first-line checks for worktree and generated-artifact safety.
 - `tradebot-handoff` is the final step after multi-skill workflows.

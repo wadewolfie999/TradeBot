@@ -14,7 +14,7 @@ Use before nontrivial source changes, architecture changes, financial-sensitive 
 
 ## Invocation Order
 
-Run `tradebot-authority-state-audit` before phase-sensitive planning. Run `tradebot-phase-gate-audit` before any Phase 22 scoping, and do not draft Phase 22 implementation steps unless explicit operator GO exists.
+Run `tradebot-authority-state-audit` before phase-sensitive planning. Run `tradebot-phase-gate-audit` before any Workstream II/Phase 23 scoping, and do not draft broker-selection or broker-dependent implementation steps unless explicit operator GO exists.
 
 ## Must Not Be Used
 
