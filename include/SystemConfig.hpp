@@ -13,7 +13,8 @@
 //               calls are made.  Parity with previous phases is guaranteed.
 //   PAPER     - routes data through LiveDataAdapter (WSS) but all broker
 //               interactions are simulated locally inside BrokerGateway mock.
-//   LIVE      - full WSS data stream + real REST/WSS broker execution.
+//   LIVE      - live-capable mode. Broker execution remains fail-closed unless
+//               a separately approved adapter is injected into BrokerGateway.
 //
 // Circuit-breaker thresholds (Workstream 7.4)
 // -------------------------------------------
@@ -29,7 +30,7 @@
 enum class SystemMode : uint8_t {
     BACKTEST = 0,   // deterministic CSV replay (default)
     PAPER    = 1,   // live data, simulated execution
-    LIVE     = 2    // live data, live execution
+    LIVE     = 2    // live-capable; execution requires separate adapter approval
 };
 
 // Convert a CLI string (e.g. "paper") to SystemMode.

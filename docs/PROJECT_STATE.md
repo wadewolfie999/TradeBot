@@ -6,7 +6,7 @@
 - Authority level: current-state evidence below active approved plans and above the roadmap; Workstreams I-III phase definitions and statuses are delegated to `ROADMAP.md`.
 - Audience: operator, maintainers, Codex, contributors, reviewers, and handoff recipients.
 - Last documentation/state audit: 2026-06-24 in `/Users/vaheedgorgeen/TradeBot`.
-- Last CMake/CTest verification evidence: 2026-06-06.
+- Last CMake/CTest verification evidence: 2026-06-25.
 
 This document represents current state only. Historical execution belongs in Git commits, pull requests, issues, ADRs, and handoffs.
 
@@ -32,7 +32,7 @@ This document represents current state only. Historical execution belongs in Git
 ## Completed Work Verified In Current Tree
 
 - C++20 core library and `tradebot_core` executable are configured in `CMakeLists.txt`.
-- Tests exist for phases 13, 15, 16, 17, and 18.
+- Tests exist for phases 13, 15, 16, 17, 18, and 22.
 - Benchmarks exist for `throughput_bench`, `phase18_burnin`, and `apply_bbo_microbench`.
 - Existing accepted ADRs:
   - ADR 0001: deprecate offline MOP/MOR/SS workflow.
@@ -59,7 +59,7 @@ This document represents current state only. Historical execution belongs in Git
 
 ## Known Defects And Warnings
 
-- `cmake --build build` completed but emitted existing warnings:
+- Previous full compile output emitted existing warnings:
   - `src/AsyncNetworkClient.cpp`: unused `SSL_ERROR_NONE`.
   - `src/RiskEngine.cpp`: `totalPositioned` set but not used.
 - No failing tests were observed during local verification.
@@ -74,23 +74,21 @@ This document represents current state only. Historical execution belongs in Git
 
 ## Verification Evidence
 
-Verified locally on 2026-06-06:
+Verified locally on 2026-06-25:
 
 ```sh
 cmake -S . -B build
 cmake --build build
 ctest --test-dir build --output-on-failure
-ctest --test-dir build -R phase18_tests --output-on-failure
-build/apply_bbo_microbench 10000
+ctest --test-dir build -R phase22_tests --output-on-failure
 ```
 
 Results:
 
 - Configure succeeded.
-- Build succeeded with the two warnings listed above.
-- Full CTest suite passed: 5 tests, 0 failed.
-- Targeted `phase18_tests` passed.
-- `apply_bbo_microbench 10000` completed and emitted finite latency/throughput metrics.
+- Build succeeded.
+- Full CTest suite passed: 6 tests, 0 failed.
+- Targeted `phase22_tests` passed.
 
 ## Operating Constraints
 

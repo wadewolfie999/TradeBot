@@ -1,10 +1,14 @@
 #include "BrokerAdapterContracts.hpp"
+#include "BrokerGateway.hpp"
 #include "OrderLifecycleStore.hpp"
+#include "PortfolioManager.hpp"
+#include "SystemConfig.hpp"
 
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
 #include <limits>
+#include <memory>
 #include <string>
 
 namespace {
@@ -23,7 +27,7 @@ OrderRequest makeRequest(std::uint64_t id, std::int64_t quantityUnits = 100)
     request.localOrderId = id;
     request.canonicalSymbol = "SYNTH-USD";
     request.side = OrderSide::Buy;
-    request.type = OrderType::Market;
+    request.type = BrokerOrderType::Market;
     request.quantity = Decimal64{quantityUnits, 2};
     request.sourceId = "phase22-test";
     request.timestampNs = 1'000;
@@ -212,6 +216,150 @@ void testInvalidAndStaleEvents()
             "reconciliation from a known accepted state must fail");
 }
 
+InstrumentSpec makeInstrumentSpec()
+{
+    InstrumentSpec spec;
+    spec.version = 7;
+    spec.canonicalSymbol = "SYNTH-USD";
+    spec.executionAlias = "SYNTHUSD";
+    spec.tickSize = Decimal64{1, 2};
+    spec.contractSize = Decimal64{1, 0};
+    spec.minimumQuantity = Decimal64{10, 2};
+    spec.maximumQuantity = Decimal64{200, 2};
+    spec.quantityStep = Decimal64{5, 2};
+    spec.complete = true;
+    return spec;
+}
+
+void testGatewayNormalizationAndLifecycleEvents()
+{
+    SystemConfig config;
+    config.mode = SystemMode::PAPER;
+    PortfolioManager portfolio;
+    BrokerGateway gateway(config, portfolio);
+    gateway.setInstrumentSpec(makeInstrumentSpec());
+    gateway.setSymbolAlias("SYNTH-USD", "SIM.SYNTHUSD");
+
+    int acknowledgementCount = 0;
+    int executionCount = 0;
+    gateway.setAcknowledgementCallback(
+        [&](const OrderAcknowledgement& acknowledgement) {
+            require(acknowledgement.accepted,
+                    "deterministic acknowledgement should accept");
+            ++acknowledgementCount;
+        });
+    gateway.setExecutionCallback([&](const ExecutionEvent&) {
+        ++executionCount;
+    });
+    gateway.connect();
+    require(gateway.isConnected(), "PAPER adapter should connect locally");
+    require(gateway.adapterHealth().state == AdapterHealthState::Connected,
+            "connected health state expected");
+
+    auto request = makeRequest(10, 1239);
+    request.quantity = Decimal64{1239, 3};
+    request.referencePrice = Decimal64{100123, 3};
+    std::string rejection;
+    const auto normalized = gateway.normalizeOrder(request, &rejection);
+    require(normalized.has_value(), "valid order should normalize");
+    require(normalized->normalizedQuantity == Decimal64{120, 2},
+            "quantity must round down to the configured step");
+    require(normalized->normalizedQuantity.toDouble()
+                <= request.quantity.toDouble(),
+            "normalization must not increase exposure");
+    require(normalized->normalizedReferencePrice == Decimal64{10012, 2},
+            "price must normalize to tick size");
+    require(normalized->executionSymbol == "SIM.SYNTHUSD",
+            "gateway-owned symbol alias must be applied");
+    require(normalized->instrumentVersion == 7,
+            "instrument metadata version must be retained");
+
+    RiskDecision denied;
+    denied.allowed = false;
+    denied.failure = FailureCategory::Validation;
+    denied.action = RuleBreachAction::Halt;
+    denied.reason = "synthetic risk rejection";
+    require(!gateway.dispatchOrder(*normalized, denied).dispatched,
+            "gateway must not bypass a rejected final risk decision");
+    require(!gateway.orderLifecycle(10).has_value(),
+            "risk-rejected order must not enter adapter lifecycle");
+
+    RiskDecision allowed;
+    allowed.allowed = true;
+    allowed.action = RuleBreachAction::Warn;
+    const auto dispatched = gateway.dispatchOrder(*normalized, allowed);
+    require(dispatched.dispatched, "normalized PAPER order should dispatch");
+    require(acknowledgementCount == 1,
+            "acknowledgement must be emitted exactly once");
+    require(executionCount == 1,
+            "execution must be emitted separately exactly once");
+    const auto lifecycle = gateway.orderLifecycle(10);
+    require(lifecycle.has_value()
+                && lifecycle->state == OrderLifecycleState::Filled,
+            "deterministic execution should reach filled state");
+    require(!gateway.dispatchOrder(*normalized, allowed).dispatched,
+            "duplicate local and idempotency identity must fail");
+}
+
+void testGatewayPartialFillAndExplicitCancel()
+{
+    SystemConfig config;
+    config.mode = SystemMode::PAPER;
+    PortfolioManager portfolio;
+    BrokerGateway gateway(config, portfolio);
+    gateway.setInstrumentSpec(makeInstrumentSpec());
+    gateway.connect();
+    gateway.injectNextPartialFill(0.5);
+
+    auto request = makeRequest(11, 100);
+    request.referencePrice = Decimal64{10000, 2};
+    const auto normalized = gateway.normalizeOrder(request);
+    require(normalized.has_value(), "partial-fill order should normalize");
+    RiskDecision allowed;
+    allowed.allowed = true;
+    allowed.action = RuleBreachAction::Warn;
+    require(gateway.dispatchOrder(*normalized, allowed).dispatched,
+            "partial-fill order should dispatch");
+    auto lifecycle = gateway.orderLifecycle(11);
+    require(lifecycle.has_value()
+                && lifecycle->state == OrderLifecycleState::PartiallyFilled,
+            "partial fill must remain non-terminal");
+
+    CancelRequest cancel;
+    cancel.localOrderId = 11;
+    cancel.externalOrderId = lifecycle->externalOrderId;
+    cancel.timestampNs = 2'000;
+    cancel.sequence = lifecycle->lastSequence + 1;
+    cancel.idempotencyKey = "cancel-11";
+    require(gateway.requestCancel(cancel),
+            "cancel dispatch should be explicit and accepted");
+    lifecycle = gateway.orderLifecycle(11);
+    require(lifecycle.has_value()
+                && lifecycle->state == OrderLifecycleState::Canceled,
+            "cancel acknowledgement must transition to canceled");
+}
+
+void testModeBoundariesFailClosed()
+{
+    PortfolioManager portfolio;
+
+    SystemConfig backtest;
+    backtest.mode = SystemMode::BACKTEST;
+    BrokerGateway backtestGateway(backtest, portfolio);
+    backtestGateway.connect();
+    require(!backtestGateway.isConnected(),
+            "BACKTEST gateway must remain offline");
+
+    SystemConfig live;
+    live.mode = SystemMode::LIVE;
+    BrokerGateway liveGateway(live, portfolio);
+    liveGateway.connect();
+    require(!liveGateway.isConnected(),
+            "LIVE without a separately approved adapter must fail closed");
+    require(liveGateway.adapterHealth().failure == FailureCategory::Validation,
+            "fail-closed LIVE boundary must expose a validation failure");
+}
+
 } // namespace
 
 int main()
@@ -221,6 +369,9 @@ int main()
     testPartialAndFinalFillDeduplication();
     testCancelUnknownRequiresReconciliation();
     testInvalidAndStaleEvents();
+    testGatewayNormalizationAndLifecycleEvents();
+    testGatewayPartialFillAndExplicitCancel();
+    testModeBoundariesFailClosed();
     std::cout << "phase22_tests: PASS\n";
     return 0;
 }
