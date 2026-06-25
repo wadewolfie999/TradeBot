@@ -36,6 +36,7 @@ set(CORE_SOURCES
     src/L2OrderBook.cpp
     src/TriggerOrderManager.cpp
     src/OrderLifecycleStore.cpp
+    src/DeterministicBrokerAdapter.cpp
 )
 
 add_library(tradebot_core_lib ${CORE_SOURCES})

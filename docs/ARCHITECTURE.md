@@ -33,7 +33,7 @@ TradeBot is a C++20 trading-system research and engineering repository with a de
 | Portfolio/risk | `PortfolioManager`, `RiskEngine` | Position accounting, drawdown, VaR, circuit breakers, halt state |
 | Execution | `ExecutionEngine`, `TriggerOrderManager` | Signal execution, pending/trigger orders, broker routing bridge |
 | Live data | `LiveDataAdapter` | Live-like candle queue, simulated external payload/test hooks, reconnect/gap-fill state |
-| Broker | `BrokerGateway` | Paper-mode local fills, live-capable broker boundary, reconciliation snapshot |
+| Broker | `BrokerGateway`, `IBrokerAdapter`, `DeterministicBrokerAdapter`, `OrderLifecycleStore` | Broker-neutral order normalization, lifecycle events, paper-mode deterministic adapter simulation, live-capable broker boundary, reconciliation snapshot |
 | Network/auth | `AsyncNetworkClient`, `AuthManager` | Async network bridge, HMAC signing, env/config credential loading |
 | Analytics/persistence | `AnalyticsEngine`, `MetricsAggregator`, `LocalMetricsExporter`, `StateSerializer` | CSV outputs, latency summaries, local metrics, resume snapshots |
 | Tests | `tests/phase13_tests.cpp` through `tests/phase18_tests.cpp` | Phase regression coverage |
@@ -90,7 +90,7 @@ Architecture policy:
 
 ## Exchange And Broker Boundary
 
-`BrokerGateway` is the broker boundary. It owns order submission, cancellation, fill confirmation, reconciliation snapshot handling, paper-mode fill simulation, and live-capable broker interaction. Execution logic must not bypass `BrokerGateway` for live-capable order side effects.
+`BrokerGateway` is the broker boundary. It owns broker-neutral order normalization, local-to-external identity correlation, lifecycle event handling, cancellation, reconciliation snapshot handling, paper-mode deterministic adapter simulation, and live-capable broker interaction. `IBrokerAdapter` implementations attach below `BrokerGateway`; provider-native schemas must be translated into broker-neutral lifecycle, execution, cancel, health, account, instrument, and reconciliation contracts before core components consume them. Execution logic must not bypass `BrokerGateway` for live-capable order side effects.
 
 ## Market-Data Boundary
 
@@ -125,6 +125,7 @@ CTest registers phase tests:
 - `phase16_tests`
 - `phase17_tests`
 - `phase18_tests`
+- `phase22_tests`
 
 Tests are C++ executables linked against `tradebot_core_lib`. Some tests create temporary files under `/tmp`.
 

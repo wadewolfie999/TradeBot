@@ -85,7 +85,7 @@ struct Decimal64 {
 };
 
 enum class OrderSide : std::uint8_t { Buy, Sell };
-enum class OrderType : std::uint8_t { Market, Limit, Stop, Unknown };
+enum class BrokerOrderType : std::uint8_t { Market, Limit, Stop, Unknown };
 
 enum class OrderLifecycleState : std::uint8_t {
     Created,
@@ -164,10 +164,11 @@ struct OrderRequest {
     std::uint64_t localOrderId{0};
     std::string canonicalSymbol;
     OrderSide side{OrderSide::Buy};
-    OrderType type{OrderType::Market};
+    BrokerOrderType type{BrokerOrderType::Market};
     Decimal64 quantity;
     std::optional<Decimal64> limitPrice;
     std::optional<Decimal64> stopPrice;
+    std::optional<Decimal64> referencePrice;
     std::string sourceId;
     std::uint64_t timestampNs{0};
     std::uint64_t sequence{0};
@@ -176,9 +177,11 @@ struct OrderRequest {
 
 struct NormalizedOrder {
     OrderRequest request;
+    std::string executionSymbol;
     Decimal64 normalizedQuantity;
     std::optional<Decimal64> normalizedLimitPrice;
     std::optional<Decimal64> normalizedStopPrice;
+    std::optional<Decimal64> normalizedReferencePrice;
     std::uint64_t instrumentVersion{0};
 };
 

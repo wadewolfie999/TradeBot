@@ -290,6 +290,7 @@ Required scenarios include acknowledgement without fill, rejection, partial/fina
 - 2026-06-24: Operator explicitly directed implementation of this bounded broker-neutral plan.
 - 2026-06-24: Local `main` fast-forwarded to `1a32f7f`; tracked worktree clean; local-only handoff excluded through `.git/info/exclude`.
 - 2026-06-24: Authority-activation PR started; no source changes made before activation.
+- 2026-06-25: Adapter-gateway slice advanced toward Operator Acceptance Candidate with `IBrokerAdapter`, deterministic PAPER adapter, gateway normalization/lifecycle dispatch, fail-closed mode tests, and local configure/build/CTest validation; operator acceptance and Phase 22 closure remain pending.
 
 ## Deviations
 
