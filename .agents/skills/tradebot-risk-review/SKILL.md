@@ -55,7 +55,7 @@ git diff --name-status
 - Use `tradebot-network-live-boundary-review` for live, network, auth, credential, PAPER, LIVE, broker, external I/O, or logging risk.
 - Use `tradebot-execution-pipeline-validation` for order lifecycle, fill, cancel, reconciliation, halt, close-only, or risk-bypass risk.
 - Use `tradebot-integration-architecture-review` for Workstream I architecture, broker-neutrality, adapter boundary, or subsystem-boundary risk.
-- Use `tradebot-phase-gate-audit` when risk review depends on Phase 22 GO/NO-GO state.
+- Use `tradebot-phase-gate-audit` when risk review depends on Workstream II/Phase 23, broker-dependent, or live GO/NO-GO state.
 
 ## Allowed Mutations
 

@@ -211,7 +211,7 @@ Must not own:
 
 ## Deterministic Simulation Requirements
 
-Any Phase 22 simulation implementation must:
+The accepted Phase 22 simulation implementation must preserve these constraints:
 
 - Use deterministic fixtures or replay events.
 - Avoid wall-clock-dependent order outcomes in backtest/replay.
@@ -222,7 +222,7 @@ Any Phase 22 simulation implementation must:
 
 ## Phase 22 Acceptance Constraints
 
-Implementation may begin only after:
+Phase 22 implementation was allowed to begin only after:
 
 - Operator approves Phase 22 implementation scope after Phase 21 completion.
 - The adapter contract is either accepted directly or incorporated into an accepted ADR.

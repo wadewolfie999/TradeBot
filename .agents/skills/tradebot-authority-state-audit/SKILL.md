@@ -12,8 +12,8 @@ Determine authoritative TradeBot project state before synchronization, phase mov
 
 - Prefer correctness before speed, determinism before convenience, and risk controls before feature development.
 - Resolve documentation authority before documentation sync; run `tradebot-authority-state-audit` before `tradebot-documentation-sync` when current state is uncertain.
-- Run `tradebot-phase-gate-audit` before phase transitions or Phase 22 planning; run `tradebot-adr-review` before ADR status mutation; run `tradebot-pr-readiness-review` before PR or merge handoff.
-- Accepted ADRs and approved Phase 21 artifacts do not authorize implementation. Phase 22 remains Blocked / NO-GO until explicit operator GO.
+- Run `tradebot-phase-gate-audit` before phase transitions or Workstream II/Phase 23 planning; run `tradebot-adr-review` before ADR status mutation; run `tradebot-pr-readiness-review` before PR or merge handoff.
+- Phase 22 is Complete — Accepted under `PLAN-20260624-workstream-i-broker-neutral-completion`. Phase 23/Workstream II remains Not Started, and broker-dependent implementation remains Blocked / NO-GO unless separately approved by the operator.
 - Live trading remains disabled unless exact operator approval exists.
 - Do not make broker-specific assumptions, destructive Git changes, or source/test changes unless a future task explicitly authorizes them.
 
@@ -103,7 +103,7 @@ Do not let lower-order history override higher-order current evidence.
 
 ## Hard Prohibitions
 
-- Do not start Phase 22 implementation.
+- Do not start Workstream II/Phase 23 or broker-dependent implementation.
 - Do not enable live trading or real orders.
 - Do not make broker-specific assumptions without plan evidence.
 - Do not modify source, tests, credentials, or generated artifacts.
@@ -112,19 +112,19 @@ Do not let lower-order history override higher-order current evidence.
 ## Interaction With Existing Skills
 
 - Run after `tradebot-git-safety` and before `tradebot-documentation-sync`.
-- Pair with `tradebot-phase-gate-audit` for phase movement or Phase 22 scoping.
+- Pair with `tradebot-phase-gate-audit` for phase movement or Workstream II/Phase 23 scoping.
 - Pair with `tradebot-adr-review` before ADR status mutation.
 - Feed findings into `tradebot-pr-readiness-review` and `tradebot-handoff`.
 
 ## Example Invocation Prompt
 
 ```text
-Use $tradebot-authority-state-audit to determine whether Phase 21, ADR 0003, and Phase 22 status are authoritative before updating TradeBot docs.
+Use $tradebot-authority-state-audit to determine whether Phase 22 closure, ADR 0003, and Phase 23 status are authoritative before updating TradeBot docs.
 ```
 
 ## Stop Conditions
 
-Stop if current phase, ADR acceptance, Phase 22 GO/NO-GO state, live authorization, credential handling, or branch safety cannot be established from inspected evidence.
+Stop if current phase, ADR acceptance, Phase 23 GO/NO-GO state, live authorization, credential handling, or branch safety cannot be established from inspected evidence.
 
 ## Reporting Format
 

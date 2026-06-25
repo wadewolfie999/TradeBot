@@ -1,6 +1,6 @@
 ---
 name: tradebot-phase-gate-audit
-description: Audit TradeBot phase and workstream transitions, entry and exit criteria, approval status, GO or NO-GO state, and unauthorized implementation risk. Use before Phase 22 scoping, phase transition claims, roadmap updates, implementation planning, or review handoffs.
+description: Audit TradeBot phase and workstream transitions, entry and exit criteria, approval status, GO or NO-GO state, and unauthorized implementation risk. Use before Workstream II/Phase 23 scoping, phase transition claims, roadmap updates, implementation planning, or review handoffs.
 ---
 # tradebot-phase-gate-audit
 
@@ -12,14 +12,14 @@ Protect TradeBot phase transitions from authority drift, implicit approvals, and
 
 - Prefer correctness before speed, determinism before convenience, and risk controls before feature development.
 - Resolve documentation authority before documentation sync; run `tradebot-authority-state-audit` before `tradebot-documentation-sync` when current state is uncertain.
-- Run `tradebot-phase-gate-audit` before phase transitions or Phase 22 planning; run `tradebot-adr-review` before ADR status mutation; run `tradebot-pr-readiness-review` before PR or merge handoff.
-- Accepted ADRs and approved Phase 21 artifacts do not authorize implementation. Phase 22 remains Blocked / NO-GO until explicit operator GO.
+- Run `tradebot-phase-gate-audit` before phase transitions or Workstream II/Phase 23 planning; run `tradebot-adr-review` before ADR status mutation; run `tradebot-pr-readiness-review` before PR or merge handoff.
+- Phase 22 is Complete — Accepted under `PLAN-20260624-workstream-i-broker-neutral-completion`. Phase 23/Workstream II remains Not Started, and broker-dependent implementation remains Blocked / NO-GO unless separately approved by the operator.
 - Live trading remains disabled unless exact operator approval exists.
 - Do not make broker-specific assumptions, destructive Git changes, or source/test changes unless a future task explicitly authorizes them.
 
 ## Activation Conditions
 
-Use before Phase 22 scoping, any phase status change, roadmap update, implementation plan, or review that depends on GO/NO-GO evidence.
+Use before Workstream II/Phase 23 scoping, any phase status change, roadmap update, implementation plan, or review that depends on GO/NO-GO evidence.
 
 ## Must Not Be Used
 
@@ -67,7 +67,7 @@ git rev-parse --short HEAD
 - Blocked is not authorized.
 - Live-capable is not live-enabled.
 - Accepted ADR does not authorize source implementation.
-- Approved Phase 21 does not start Phase 22.
+- Approved Phase 22 closure does not start Workstream II/Phase 23.
 
 ## Procedure
 
@@ -75,14 +75,14 @@ git rev-parse --short HEAD
 2. Verify entry and exit criteria from roadmap, plans, ADRs, and operator decision.
 3. Require explicit GO/NO-GO evidence before any transition.
 4. Classify the proposed next action as documentation, scoping, implementation, live-capable, or live.
-5. Protect Phase 22 from implicit activation.
+5. Protect Workstream II/Phase 23 from implicit activation.
 6. Report missing approvals, unresolved gates, and required verification.
 
 ## Validation Checklist
 
 - Phase 21 is Complete - Approved only as planning/governance.
 - ADR 0003 is Accepted but not implementation authorization.
-- Phase 22 remains Blocked / NO-GO until explicit operator GO.
+- Phase 22 is Complete — Accepted; Phase 23/Workstream II remains Not Started until explicit operator GO.
 - Broker-specific implementation is absent unless separately approved.
 - Live trading remains disabled unless exact operator approval exists.
 
@@ -96,7 +96,7 @@ git rev-parse --short HEAD
 
 ## Hard Prohibitions
 
-- Do not implement Phase 22.
+- Do not implement Phase 23/Workstream II or broker-dependent integration.
 - Do not alter risk limits, credentials, live mode, order routing, or broker code.
 - Do not downgrade blocked status without operator GO.
 - Do not stage, commit, push, reset, clean, or discard changes.
@@ -104,14 +104,14 @@ git rev-parse --short HEAD
 ## Interaction With Existing Skills
 
 - Run after `tradebot-authority-state-audit` for phase-sensitive work.
-- Run before `tradebot-plan-authoring` for Phase 22 planning.
+- Run before `tradebot-plan-authoring` for Workstream II/Phase 23 planning.
 - Pair with `tradebot-integration-architecture-review` and `tradebot-risk-review` for Workstream I scoping.
 - Feed final gate state into `tradebot-pr-readiness-review` and `tradebot-handoff`.
 
 ## Example Invocation Prompt
 
 ```text
-Use $tradebot-phase-gate-audit to verify whether Phase 22 scoping is allowed and whether implementation remains NO-GO.
+Use $tradebot-phase-gate-audit to verify whether Workstream II/Phase 23 scoping is allowed and whether broker-dependent implementation remains NO-GO.
 ```
 
 ## Stop Conditions

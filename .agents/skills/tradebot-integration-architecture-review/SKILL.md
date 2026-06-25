@@ -1,6 +1,6 @@
 ---
 name: tradebot-integration-architecture-review
-description: Review TradeBot Workstream I and broker-exchange integration architecture for broker-neutrality, subsystem boundary integrity, deterministic replay safety, and risk isolation. Use for Phase 22 scoping, adapter architecture, BrokerGateway boundaries, or integration design review.
+description: Review TradeBot Workstream I and broker-exchange integration architecture for broker-neutrality, subsystem boundary integrity, deterministic replay safety, and risk isolation. Use for post-Phase-22 boundary review, adapter architecture, BrokerGateway boundaries, or Workstream II readiness review.
 ---
 # tradebot-integration-architecture-review
 
@@ -12,14 +12,14 @@ Review Workstream I integration architecture without allowing broker-specific im
 
 - Prefer correctness before speed, determinism before convenience, and risk controls before feature development.
 - Resolve documentation authority before documentation sync; run `tradebot-authority-state-audit` before `tradebot-documentation-sync` when current state is uncertain.
-- Run `tradebot-phase-gate-audit` before phase transitions or Phase 22 planning; run `tradebot-adr-review` before ADR status mutation; run `tradebot-pr-readiness-review` before PR or merge handoff.
-- Accepted ADRs and approved Phase 21 artifacts do not authorize implementation. Phase 22 remains Blocked / NO-GO until explicit operator GO.
+- Run `tradebot-phase-gate-audit` before phase transitions or Workstream II/Phase 23 planning; run `tradebot-adr-review` before ADR status mutation; run `tradebot-pr-readiness-review` before PR or merge handoff.
+- Phase 22 is Complete — Accepted under `PLAN-20260624-workstream-i-broker-neutral-completion`. Phase 23/Workstream II remains Not Started, and broker-dependent implementation remains Blocked / NO-GO unless separately approved by the operator.
 - Live trading remains disabled unless exact operator approval exists.
 - Do not make broker-specific assumptions, destructive Git changes, or source/test changes unless a future task explicitly authorizes them.
 
 ## Activation Conditions
 
-Use for Workstream I, Phase 22 scoping, adapter architecture, `BrokerGateway`, `ExecutionEngine`, `RiskEngine`, `SystemConfig`, `LiveDataAdapter`, `AuthManager`, `L2OrderBook`, or replay-boundary design.
+Use for Workstream I, post-Phase-22 boundary review, adapter architecture, `BrokerGateway`, `ExecutionEngine`, `RiskEngine`, `SystemConfig`, `LiveDataAdapter`, `AuthManager`, `L2OrderBook`, or replay-boundary design.
 
 ## Must Not Be Used
 
@@ -61,7 +61,7 @@ git diff --name-status
 
 ## Procedure
 
-1. Verify Phase 22 is scoped only if explicit operator GO exists.
+1. Verify Workstream II/Phase 23 or broker-dependent work is scoped only if explicit operator GO exists.
 2. Check broker-neutrality and reject broker-specific assumptions without plan evidence.
 3. Verify strategy, allocation, replay, L2, analytics, and portfolio code stay free of broker schemas.
 4. Confirm future adapters attach below `BrokerGateway`.
@@ -82,11 +82,11 @@ git diff --name-status
 - Adapter attached beside or above `BrokerGateway`.
 - Risk gates bypassed by convenience paths.
 - Replay tests requiring live or wall-clock state.
-- Phase 22 work starting from ADR acceptance alone.
+- Workstream II/Phase 23 or broker-dependent work starting from ADR acceptance alone.
 
 ## Hard Prohibitions
 
-- Do not implement Phase 22 without explicit operator GO.
+- Do not implement Phase 23/Workstream II or broker-dependent integration without explicit operator GO.
 - Do not add broker-specific API assumptions without approved plan evidence.
 - Do not weaken risk controls or deterministic defaults.
 - Do not expose credentials or enable live trading.
@@ -102,7 +102,7 @@ git diff --name-status
 ## Example Invocation Prompt
 
 ```text
-Use $tradebot-integration-architecture-review to verify a Phase 22 adapter design stays broker-neutral and below BrokerGateway.
+Use $tradebot-integration-architecture-review to verify a broker-dependent adapter design stays below BrokerGateway and does not bypass accepted broker-neutral boundaries.
 ```
 
 ## Stop Conditions

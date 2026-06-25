@@ -12,8 +12,8 @@ Validate ADR status and implications without letting ADR acceptance become unaut
 
 - Prefer correctness before speed, determinism before convenience, and risk controls before feature development.
 - Resolve documentation authority before documentation sync; run `tradebot-authority-state-audit` before `tradebot-documentation-sync` when current state is uncertain.
-- Run `tradebot-phase-gate-audit` before phase transitions or Phase 22 planning; run `tradebot-adr-review` before ADR status mutation; run `tradebot-pr-readiness-review` before PR or merge handoff.
-- Accepted ADRs and approved Phase 21 artifacts do not authorize implementation. Phase 22 remains Blocked / NO-GO until explicit operator GO.
+- Run `tradebot-phase-gate-audit` before phase transitions or Workstream II/Phase 23 planning; run `tradebot-adr-review` before ADR status mutation; run `tradebot-pr-readiness-review` before PR or merge handoff.
+- Phase 22 is Complete — Accepted under `PLAN-20260624-workstream-i-broker-neutral-completion`. Phase 23/Workstream II remains Not Started, and broker-dependent implementation remains Blocked / NO-GO unless separately approved by the operator.
 - Live trading remains disabled unless exact operator approval exists.
 - Do not make broker-specific assumptions, destructive Git changes, or source/test changes unless a future task explicitly authorizes them.
 
@@ -71,7 +71,7 @@ git diff --name-status
 - Accepted ADR is not treated as source implementation approval.
 - Superseded or deprecated ADRs are clearly marked.
 - Consequences include risk, testing, and rollback implications where relevant.
-- Phase 22 remains Blocked / NO-GO unless separate operator GO exists.
+- Phase 22 is Complete — Accepted; Phase 23/Workstream II remains Not Started unless separate operator GO exists.
 
 ## Failure Modes Caught
 
@@ -85,7 +85,7 @@ git diff --name-status
 
 - Do not mutate ADR status without explicit operator or review-authority evidence.
 - Do not authorize source, broker, credential, risk, or live changes.
-- Do not implement Phase 22.
+- Do not implement Phase 23/Workstream II or broker-dependent integration.
 - Do not stage, commit, push, reset, clean, or discard changes.
 
 ## Interaction With Existing Skills
@@ -98,7 +98,7 @@ git diff --name-status
 ## Example Invocation Prompt
 
 ```text
-Use $tradebot-adr-review to verify ADR 0003 status and confirm it does not authorize Phase 22 implementation.
+Use $tradebot-adr-review to verify ADR 0003 status and confirm it does not authorize Workstream II/Phase 23 or broker-dependent implementation.
 ```
 
 ## Stop Conditions

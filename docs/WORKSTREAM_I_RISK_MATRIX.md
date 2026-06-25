@@ -69,7 +69,7 @@
 GO only if:
 
 - Risk controls are documented for each critical and high-risk subsystem.
-- Phase 22 implementation can be bounded by approved contracts.
+- Phase 22 implementation was bounded by approved contracts.
 - Documentation does not imply live readiness.
 - Open uncertainties are documented as blockers.
 
@@ -84,7 +84,7 @@ NO-GO if:
 
 GO only if:
 
-- Operator separately approves source implementation.
+- Operator separately approved source implementation.
 - Critical and high-risk subsystem tests are identified before edits.
 - Rollback is a Git revert or branch reset approved by the operator.
 

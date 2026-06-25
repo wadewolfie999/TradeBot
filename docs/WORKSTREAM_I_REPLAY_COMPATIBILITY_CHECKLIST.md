@@ -15,9 +15,9 @@
 - Make any future broker-event simulation reproducible and provenance-labeled.
 - Require migration review before changing replay schemas or generated-output semantics.
 
-## Entry Checklist For Phase 22
+## Phase 22 Entry Checklist
 
-Before implementation starts:
+Before Phase 22 implementation started:
 
 - [x] Phase 21 artifacts are approved.
 - [ ] Replay-affecting files and interfaces are identified.
@@ -69,7 +69,7 @@ Prohibited:
 
 ## Broker-Event Simulation Checklist
 
-Future Phase 22 broker-event simulation must prove:
+Accepted Phase 22 broker-event simulation must prove:
 
 - [ ] Accepted order does not imply filled order.
 - [ ] Rejected order does not mutate portfolio as filled.
@@ -117,7 +117,7 @@ build/phase18_burnin 10000
 
 ## GO / NO-GO Checklist
 
-GO to Phase 22 implementation only if:
+GO to Phase 22 implementation was allowed only if:
 
 - [x] Phase 21 artifacts are approved.
 - [x] Replay compatibility risks are documented.

@@ -99,7 +99,7 @@ Results:
 
 ## Next Safe Action
 
-Review and merge this authority-doc closure branch if accepted, then stop until the operator explicitly authorizes the next phase. Do not connect or log in to MT5, access an account, use credentials, select a broker or prop firm, start Phase 23, route real or sandbox orders, enable live trading, or alter risk defaults without separate operator approval.
+Stop until the operator explicitly authorizes the next phase. Do not connect or log in to MT5, access an account, use credentials, select a broker or prop firm, start Phase 23, route real or sandbox orders, enable live trading, or alter risk defaults without separate operator approval.
 
 ## Next Professional Halting Point
 
