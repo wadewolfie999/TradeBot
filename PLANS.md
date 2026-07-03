@@ -90,6 +90,14 @@ Plans must not invent repository facts. If evidence is missing, record the uncer
 
 Plan approval, phase approval, and ADR acceptance are distinct. None independently authorizes a blocked phase, source implementation, broker selection, documentation-platform selection, credentials, or live trading.
 
+## Workstream Architecture Relationship
+
+`docs/WORKSTREAM_ARCHITECTURE.md` is the current project-level domain and coordination map. Plans must identify the affected workstream and the governing roadmap phase, if any, without treating a workstream label or strategic activity as implementation approval.
+
+Workstream II currently permits only strategic evidence preparation under Strategy 2 — Parallel Evidence Lanes With Wade Checkpoints. Wade owns authority, scope, gates, broker selection, and acceptance. Bigi owns technical evidence, adapter-fit audit, failure-mode checklist, and demo/live semantics analysis. ChatGPT/review assistant supports prompt structure, output review, and governance-drift detection. Phase 23 remains the next formal broker-selection/evaluation phase; Phase 24 implementation and all connection, credential, account, sandbox-order, and live actions remain blocked.
+
+Strategy 3 gate labels may be added later as a governance overlay. Do not infer or implement a full Kanban system from this planning rule.
+
 ## Deviation Handling
 
 If implementation discovers a material mismatch with the plan:

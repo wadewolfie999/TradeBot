@@ -3,9 +3,9 @@
 ## Purpose And Authority
 
 - Purpose: authoritative current-state summary for TradeBot.
-- Authority level: current-state evidence below active approved plans and above the roadmap; Workstreams I-III phase definitions and statuses are delegated to `ROADMAP.md`.
+- Authority level: current-state evidence below active approved plans and above the roadmap; the project workstream map is defined in `WORKSTREAM_ARCHITECTURE.md`, and phase definitions and statuses are delegated to `ROADMAP.md`.
 - Audience: operator, maintainers, Codex, contributors, reviewers, and handoff recipients.
-- Last documentation/state audit: 2026-06-25 in `/Users/vaheedgorgeen/TradeBot`.
+- Last documentation/state audit: 2026-07-03 in `/Users/vaheedgorgeen/TradeBot`.
 - Last CMake/CTest verification evidence: 2026-06-25.
 
 This document represents current state only. Historical execution belongs in Git commits, pull requests, issues, ADRs, and handoffs.
@@ -19,11 +19,14 @@ This document represents current state only. Historical execution belongs in Git
 
 ## Current Roadmap State
 
-`ROADMAP.md` is the deterministic authority for Workstreams I-III. Current summary:
+`WORKSTREAM_ARCHITECTURE.md` defines the current Workstreams I-VII project map; `ROADMAP.md` is the deterministic phase authority. Current summary:
 
+- Workstream I — Broker-Neutral Execution Foundation: Complete — Accepted through Phase 22.
+- Workstream II — Broker Integration Program: next active strategic area for evidence/evaluation coordination only; not implementation-authorized.
+- Workstreams III–VII: parallel/future domains unless separately activated.
 - Phase 21: Complete — Approved; ADR 0003 is Accepted.
 - Phase 22: Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness; Complete — Accepted under `PLAN-20260624-workstream-i-broker-neutral-completion`.
-- Phase 23: Not Started; no broker is selected.
+- Phase 23: next formal broker-selection/evaluation phase; Not Started, with bounded pre-phase strategic evidence preparation active and no broker selected.
 - Phase 24: Blocked pending Phase 23 selection and operator-approved connection scope.
 - Phase 25: Not Started; no documentation platform is selected.
 - Phase 26: Blocked pending Phase 25 selection and operator-approved documentation architecture.
@@ -45,11 +48,12 @@ This document represents current state only. Historical execution belongs in Git
 ## In-Progress Work
 
 - Repository governance and Codex skill-system maintenance.
+- Workstream II strategic evidence preparation under Strategy 2 — Parallel Evidence Lanes With Wade Checkpoints. This is documentation/evaluation activity only.
 
 ## Blocked Or Constrained Work
 
 - Phase 22 is closed at the accepted broker-neutral Workstream I boundary. Any external, broker-specific, platform-specific, credential, account, order-routing, or connectivity assumption remains Blocked / NO-GO.
-- MT5 connectivity, terminal integration or login, credentials, account or prop-account access, broker or prop-firm selection, real or sandbox order routing, live trading, and Phase 23 activation remain unauthorized.
+- Workstream II's Demo/Sandbox environment setup path and Live Account readiness path are preparation-only. Broker connection, external broker calls, credentials, account or prop-account actions, real or sandbox order routing, live deployment, live trading, and formal Phase 23 activation remain unauthorized.
 - Phase 24 is blocked until Phase 23 selects a broker and the operator approves connection scope.
 - Phase 26 is blocked until Phase 25 selects a documentation platform and the operator approves documentation architecture.
 - GitHub-dependent sync remains constrained by intermittent or costly global connectivity.
@@ -68,9 +72,9 @@ This document represents current state only. Historical execution belongs in Git
 ## Documentation System Status
 
 - Root `AGENTS.md`, `PLANS.md`, and `CONTRIBUTING.md` are present locally.
-- Dedicated testing, data, security, actor, workflow, handoff, benchmarking, dependency, configuration, style, failure-recovery, live-readiness, glossary, review, release, Workstream I, and Phase 22 offline-research documents are present locally.
+- Dedicated testing, data, security, actor, workflow, handoff, benchmarking, dependency, configuration, style, failure-recovery, live-readiness, glossary, review, release, project workstream architecture, Workstream I, and Phase 22 offline-research documents are present locally.
 - `.agents/skills/` TradeBot skill files are present locally, including `tradebot-git-safety`.
-- `ROADMAP.md` is the canonical Workstreams I-III roadmap authority; this document summarizes its current state.
+- `WORKSTREAM_ARCHITECTURE.md` is the current project-level Workstreams I-VII map; `ROADMAP.md` is the canonical phase authority; this document summarizes current state.
 
 ## Verification Evidence
 
@@ -99,8 +103,8 @@ Results:
 
 ## Next Safe Action
 
-Stop until the operator explicitly authorizes the next phase. Do not connect or log in to MT5, access an account, use credentials, select a broker or prop firm, start Phase 23, route real or sandbox orders, enable live trading, or alter risk defaults without separate operator approval.
+Assemble documentation-only pre-Phase-23 evidence lanes: technical evidence, adapter-fit audit, failure-mode checklist, and demo/live semantics analysis. Stop at a Wade checkpoint before broker selection or any new scope. Do not connect or log in to MT5, call a broker, access or create an account, use credentials, start implementation, route real or sandbox orders, enable live trading, or alter risk defaults.
 
 ## Next Professional Halting Point
 
-Stop after authority-doc closure unless the operator explicitly opens the next phase. Broker-dependent implementation and live trading remain explicitly Blocked / NO-GO. Do not skip phases, delete generated artifacts, or perform connectivity, credential, account, broker-selection, real-order, sandbox, or live operations without explicit operator approval.
+Stop after the scoped evidence package and Wade checkpoint. Broker selection, Phase 24, broker-dependent implementation, and live trading remain explicitly Blocked / NO-GO without separate approval. Do not skip phases, delete generated artifacts, or perform connectivity, credential, account, real-order, sandbox-order, or live operations.
