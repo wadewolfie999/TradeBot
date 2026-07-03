@@ -2,8 +2,8 @@
 
 ## Purpose And Authority
 
-- Purpose: define the deterministic Workstreams I-III roadmap, phase sequence, status, and authorization gates.
-- Authority level: primary roadmap authority for Workstreams I-III within the repository authority order; below current project state and above workflow details.
+- Purpose: define phase sequence, status, and authorization gates within the project-level Workstreams I-VII map.
+- Authority level: primary phase-roadmap authority within the repository authority order; below current project state and above workflow details.
 - Audience: operator, maintainers, Codex, contributors, reviewers, and research agents.
 
 The roadmap is reconstructed from verified repository evidence, not from unverified legacy claims. Phase names below reflect observed source/test/commit structure. Completion status is recorded only when supported by current files, tests, commits, or accepted docs.
@@ -25,28 +25,43 @@ The roadmap is reconstructed from verified repository evidence, not from unverif
 - A blocked phase requires exact operator GO before its blocked activity may begin.
 - No phase may be skipped.
 - Bounded broker-neutral Phase 22 implementation is complete and accepted under `PLAN-20260624-workstream-i-broker-neutral-completion`. Broker-dependent implementation and live trading remain Blocked / NO-GO.
+- `WORKSTREAM_ARCHITECTURE.md` defines the conceptually accepted project-level Workstreams I-VII domain map. Domain inclusion or strategic activity does not authorize implementation.
 - Workstream II must not imply that a broker has been selected. Broker selection requires an explicit operator decision in Phase 23.
 - Workstream III must not imply that a documentation platform has been selected. Platform selection requires an explicit operator decision in Phase 25.
 - Nobitex is omitted from active Phase 22 scope. Phase 22 research must remain broker-neutral and must not select a broker, prop firm, program, account, or MT5 bridge topology.
 - MT5/prop-account readiness is a downstream compatibility target for Phase 22 broker-neutral contracts. It does not select a broker or prop firm and does not authorize MT5 connectivity, account access, credentials, or broker-dependent implementation.
 - Live trading remains disabled and unauthorized unless the operator grants exact approval under `RISK_POLICY.md` and `LIVE_TRADING_READINESS.md`.
 
-## Deterministic Workstream Authority
+## Current Workstream Architecture
 
-This table is the canonical roadmap state for Workstreams I-III. `PROJECT_STATE.md` summarizes it and must not independently redefine these statuses.
+`TradeBot Workstream Architecture v1.0` in `WORKSTREAM_ARCHITECTURE.md` is the current project-level map:
+
+- Workstream I — Broker-Neutral Execution Foundation: Complete — Accepted through Phase 22.
+- Workstream II — Broker Integration Program: next active strategic area for evidence/evaluation coordination only; Phase 23 remains the next formal phase and implementation is not authorized.
+- Workstream III — Documentation & Knowledge Architecture: parallel/future unless separately activated.
+- Workstream IV — ML Optimization & Strategy Research: parallel/future unless separately activated.
+- Workstream V — Core Platform Enhancement: parallel/future unless separately activated.
+- Workstream VI — Production Governance & Live Readiness: parallel/future unless separately activated; live trading remains unauthorized.
+- Workstream VII — Strategic Expansion Alternatives: parallel/future unless separately activated.
+
+Workstream II includes a Demo/Sandbox environment setup path for future broker-hosted non-live validation and a separate Live Account readiness path for future preparation only. Current scope is documentation and evidence analysis. Broker connection, external broker calls, credentials, account actions, sandbox orders, live deployment, and live trading remain unauthorized.
+
+## Deterministic Phase Authority
+
+This table is the canonical phase state for Workstreams I-III. `PROJECT_STATE.md` summarizes it and must not independently redefine these statuses.
 
 | Workstream | Phase | Status | Authorized scope and gate |
 | --- | --- | --- | --- |
-| I - Technical Integration | Phase 21: Infrastructure Alignment | Complete — Approved | Internal TradeBot integration architecture and boundary alignment. ADR 0003 is Accepted; Phase 21 planning artifacts are approved. |
-| I - Technical Integration | Phase 22: Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness | Complete — Accepted | `PLAN-20260624-workstream-i-broker-neutral-completion` closed the provider-neutral contracts, deterministic simulation, execution/risk alignment, persistence, replay, tests, and documentation boundary. No broker or prop firm selection, connection method, connectivity, credentials, account access, real or sandbox orders, broker-dependent implementation, or live trading is authorized. |
-| II - Brokerage & Operations | Phase 23: Broker Selection | Not Started | Identify and evaluate the Most Optimized Broker (M.O.B.). No broker is selected without an explicit operator decision. |
-| II - Brokerage & Operations | Phase 24: Connection Protocol | Blocked | Define the TradeBot-to-selected-M.O.B. account connection protocol only after Phase 23 selection and operator approval of connection scope. |
-| III - Documentation & Knowledge Management | Phase 25: Documentation Platform Evaluation & Selection | Not Started | Evaluate and select the documentation platform. No platform is selected. |
-| III - Documentation & Knowledge Management | Phase 26: Core Documentation Architecture & Drafting | Blocked | Build the core documentation structure and draft canonical documentation only after Phase 25 selection and operator approval of the documentation architecture. |
+| I — Broker-Neutral Execution Foundation | Phase 21: Infrastructure Alignment | Complete — Approved | Internal TradeBot integration architecture and boundary alignment. ADR 0003 is Accepted; Phase 21 planning artifacts are approved. |
+| I — Broker-Neutral Execution Foundation | Phase 22: Broker-Neutral Execution Adapter Alignment and MT5/Prop-Account Readiness | Complete — Accepted | `PLAN-20260624-workstream-i-broker-neutral-completion` closed the provider-neutral contracts, deterministic simulation, execution/risk alignment, persistence, replay, tests, and documentation boundary. No broker or prop firm selection, connection method, connectivity, credentials, account access, real or sandbox orders, broker-dependent implementation, or live trading is authorized. |
+| II — Broker Integration Program | Phase 23: Broker Selection | Not Started (formal phase); pre-phase strategic evidence preparation active | Identify and evaluate the Most Optimized Broker (M.O.B.) through documentation and evidence lanes. No broker is selected without an explicit Wade decision; no implementation, connection, credentials, account action, or orders are authorized. |
+| II — Broker Integration Program | Phase 24: Connection Protocol | Blocked | Define the TradeBot-to-selected-M.O.B. account connection protocol only after Phase 23 selection and separate operator approval of connection scope. |
+| III — Documentation & Knowledge Architecture | Phase 25: Documentation Platform Evaluation & Selection | Not Started | Evaluate and select the documentation platform. No platform is selected. |
+| III — Documentation & Knowledge Architecture | Phase 26: Core Documentation Architecture & Drafting | Blocked | Build the core documentation structure and draft canonical documentation only after Phase 25 selection and operator approval of the documentation architecture. |
 
 ## Historical And Current Phase Model
 
-The Foundation through Phase 19 entries below are historical context reconstructed from repository evidence. Workstreams I-III and Phases 21-26 are current roadmap authority and use the statuses in the deterministic table above.
+The Foundation through Phase 19 entries below are historical context reconstructed from repository evidence. Phases 21-26 use the statuses in the deterministic table above; Workstreams IV-VII remain parallel/future domains without phase activation.
 
 ### Foundation And Deterministic Core
 
@@ -129,10 +144,12 @@ The Foundation through Phase 19 entries below are historical context reconstruct
 ### Phase 23: Workstream II Broker Selection
 
 - Purpose: identify and evaluate the Most Optimized Broker (M.O.B.).
-- Entry conditions: Phase 22 sequence is respected and the operator authorizes broker-selection evaluation.
-- Scope: broker evaluation and an explicit operator selection decision; no connection implementation.
+- Entry conditions: Phase 22 sequence is respected; current work is limited to strategic evidence preparation until Wade formally opens and accepts the Phase 23 decision scope.
+- Operating rhythm: Strategy 2 — Parallel Evidence Lanes With Wade Checkpoints. Wade owns authority, scope, gates, broker selection, and acceptance; Bigi owns technical evidence, adapter-fit audit, failure-mode checklist, and demo/live semantics analysis; ChatGPT/review assistant supports prompt structure, output review, and governance-drift detection.
+- Scope: documentation, evaluation evidence, and an explicit Wade selection decision; no connection implementation. Workstream II keeps separate Demo/Sandbox environment setup and Live Account readiness paths, both preparation-only under the current gate.
 - Stop/go gate: evaluation evidence must not imply that a broker has already been selected.
-- Status: Not Started; no broker is selected.
+- Governance overlay: Strategy 3 gate labels may be added later; no full Kanban system is authorized now.
+- Status: Not Started as a formal phase; pre-phase strategic/evaluation evidence preparation is active, no broker is selected, and implementation is not authorized.
 
 ### Phase 24: Workstream II Connection Protocol
 
@@ -178,10 +195,10 @@ The Foundation through Phase 19 entries below are historical context reconstruct
 
 ## Recovery Considerations
 
-- If `PROJECT_STATE.md` conflicts with the Workstreams I-III table, stop and reconcile the summary against this roadmap and higher authority before acting.
+- If `PROJECT_STATE.md` conflicts with the phase table, stop and reconcile the summary against this roadmap and higher authority before acting.
 - If an ADR conflicts with roadmap direction, the accepted ADR governs until superseded.
 - If tests fail during a phase gate, halt implementation and follow `FAILURE_RECOVERY.md`.
 
 ## Next Roadmap Action
 
-The next major step is an explicit operator decision on whether to open Phase 23 broker-selection evaluation. MT5 connectivity, credentials, account access, broker or prop-firm selection, broker-dependent implementation, real or sandbox orders, live trading, risk-limit changes, and Phase 23 activation remain unauthorized until separately approved.
+The next major step is to assemble the bounded pre-Phase-23 evidence package under Strategy 2 and stop at a Wade checkpoint for an explicit broker-selection/evaluation decision. Phase 23 remains the next formal phase and Phase 24 remains blocked. MT5 connectivity, broker connection, credentials, account access, broker-dependent implementation, real or sandbox orders, live deployment, live trading, and risk-limit changes remain unauthorized until separately approved.

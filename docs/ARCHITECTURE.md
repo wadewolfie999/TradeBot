@@ -10,6 +10,12 @@
 
 TradeBot is a C++20 trading-system research and engineering repository with a deterministic core for market-data replay, L2 order book logic, strategy execution, portfolio/risk accounting, trigger orders, analytics, metrics, state serialization, tests, and benchmarks. It has live-capable adapter classes, but live trading is prohibited unless explicitly authorized through the risk and live-readiness gates.
 
+## Project Workstream Map
+
+`WORKSTREAM_ARCHITECTURE.md` defines `TradeBot Workstream Architecture v1.0`, the current project-level Workstreams I-VII domain and coordination map. It organizes planning around broker-neutral foundation, broker integration, documentation, research, platform enhancement, production governance, and strategic alternatives without changing the system boundaries in this document.
+
+The workstream map is a planning/governance artifact only. It does not authorize source implementation, broker connection, external calls, credentials, account actions, sandbox orders, live deployment, or live trading.
+
 ## Architectural Principles
 
 - Default to deterministic `BACKTEST` behavior.
