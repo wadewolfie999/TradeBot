@@ -52,6 +52,7 @@ Financial safety and operator authority cannot be silently overridden by any doc
 - `WORKSTREAM_I_RISK_MATRIX.md`: approved Workstream I subsystem risk classifications, controls, and gates.
 - `WORKSTREAM_I_REPLAY_COMPATIBILITY_CHECKLIST.md`: approved deterministic replay and broker-event simulation compatibility gates.
 - `PHASE22_OFFLINE_MT5_PROP_RESEARCH.md`: broker-neutral Phase 22 offline research artifact for MT5 integration surfaces, synthetic prop-account rules, deterministic fixtures, and non-activation gates; it does not authorize implementation or connectivity.
+- `RESIDUAL_GAPS_BACKLOG.md`: current residual engineering, evidence, governance, and operational gaps, plus a conditional OANDA action lane; it does not authorize broker selection, connectivity, credentials, or live trading.
 - `decisions/`: permanent architecture decision records.
 
 Root-level documents:
